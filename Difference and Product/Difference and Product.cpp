@@ -41,10 +41,7 @@ int main() {
                 result = 2;
             } else if(t * t == discriminant) {
                 if((-D + t) % 2 == 0) {
-                    result += 2;
-                }
-                if((-D - t) % 2 == 0) {
-                    result += 2;
+                    result += 4;
                 }
             }
         }
