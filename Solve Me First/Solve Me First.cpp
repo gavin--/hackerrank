@@ -1,4 +1,3 @@
-// https://www.hackerrank.com/challenges/solve-me-first
 #include <cstdio>
 #include <iostream>
 using namespace std;
