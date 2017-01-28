@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-const int MOD = 1000000007, INVERSE = 111111112;
+const long long MOD = 1000000007, INVERSE = 111111112;
 
-long long pow(long long n, int x) {
+long long pow(long long n, long long x) {
     auto result = 1;
     while(x > 0) {
         if(x % 2 == 1) {
@@ -18,7 +18,7 @@ long long pow(long long n, int x) {
 int main() {
     string N;
     cin >> N;
-    auto result = 0;
+    auto result = 0ll;
     for(auto i = 0; i != N.size(); i++) {
         auto count = (i + 1) * (N[i] - '0');
         result = (result + count * (pow(10, N.size() - i) - 1) % MOD * INVERSE) % MOD;
