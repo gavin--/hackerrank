@@ -15,14 +15,12 @@ int main() {
             dp[i] = 1;
         }
     }
+    long long sum = dp[N - 1];
     for(auto i = N - 2; i >= 0; i--) {
         if(rating[i] > rating[i + 1] && dp[i] <= dp[i + 1]) {
             dp[i] = dp[i + 1] + 1;
         }
-    }
-    auto sum = 0ll;
-    for(auto& i : dp) {
-        sum += i;
+        sum += dp[i];
     }
     cout << sum;
     return 0;
