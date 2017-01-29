@@ -10,14 +10,11 @@ int main() {
         for(auto i = 0; i != N; i++) {
             cin >> WOT[i];
         }
-        int dp[N];
-        dp[N - 1] = WOT[N - 1];
-        for(auto i = N - 2; i >= 0; i--) {
-            dp[i] = max(dp[i + 1], WOT[i]);
-        }
+        int dp = WOT[N - 1];
         auto profit = 0ll;
-        for(auto i = 0; i != N; i++) {
-            profit += dp[i] - WOT[i];
+        for(auto i = N - 2; i >= 0; i--) {
+            dp = max(dp, WOT[i]);
+            profit += dp - WOT[i];
         }
         cout << profit << endl;
     }
