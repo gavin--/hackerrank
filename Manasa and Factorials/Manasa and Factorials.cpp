@@ -15,6 +15,7 @@ int main() {
         long long n, five = 0, begin = 1ll, end = begin;
         cin >> n;
         while(count5(end) < n) {
+            begin = end;
             end *= 2;
         }
         while(begin < end) {
