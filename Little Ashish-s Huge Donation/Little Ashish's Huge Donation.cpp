@@ -1,4 +1,8 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 long long f(long long n) {
@@ -12,6 +16,7 @@ int main() {
         cin >> X;
         auto begin = 1ll, end = begin;
         while(f(end) < X) {
+            begin = end;
             end *= 2;
         }
         while(begin < end) {
