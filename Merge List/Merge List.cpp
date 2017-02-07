@@ -1,21 +1,21 @@
 #include <iostream>
 using namespace std;
 
-const int MOD = 1000000007;
+const long long MOD = 1000000007;
 
-int exp(int x, int n) {
-    auto result = 1;
+long long exp(long long x, int n) {
+    auto result = 1ll;
     while(n != 0) {
         if(n % 2 == 1) {
-            result = (long long)result * x % MOD;
+            result = result * x % MOD;
         }
         n /= 2;
-        x = (long long)x * x % MOD;
+        x = x * x % MOD;
     }
     return result;
 }
 
-int inverse(int n) {
+long long inverse(long long n) {
     return exp(n, MOD - 2);
 }
 
