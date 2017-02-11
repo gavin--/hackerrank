@@ -7,14 +7,14 @@ int main() {
     for(auto i = 0; i != m; i++) {
         int j;
         cin >> j;
-        if(a + j >=s && a + j <= t) {
+        if(a + j >= s && a + j <= t) {
             apple++;
         }
     }
     for(auto i = 0; i != n; i++) {
         int j;
         cin >> j;
-        if(b + j >=s && b + j <= t) {
+        if(b + j >= s && b + j <= t) {
             orange++;
         }
     }
