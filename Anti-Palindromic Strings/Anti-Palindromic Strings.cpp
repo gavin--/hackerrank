@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 
-const int MOD = 1000000007;
+const long long MOD = 1000000007;
 
-int exp(long long x, int n) {
+long long exp(long long x, long long n) {
     auto result = 1ll;
     while(n != 0) {
         if(n % 2 == 1) {
@@ -18,13 +18,13 @@ int exp(long long x, int n) {
 int main() {
     int T;
     for(cin >> T; T > 0; T--) {
-        int N, M;
+        long long N, M;
         cin >> N >> M;
         if(M == 1 && N > 1 || M == 2 && N > 2) {
             cout << 0 << endl;
             continue;
         }
-        auto result = (long long)M;
+        auto result = M;
         if(N > 1) {
             result = result * (M - 1) % MOD;
         }
