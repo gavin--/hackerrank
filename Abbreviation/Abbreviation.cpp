@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -8,9 +9,7 @@ int main() {
         string a, b;
         cin >> a >> b;
         vector<bool> dp[a.size() + 1];
-        for(auto& i : dp) {
-            i = vector<bool>(b.size() + 1);
-        }
+        fill(dp, dp + a.size() + 1, vector<bool>(b.size() + 1));
         dp[0][0] = 1;
         for(auto i = 1; i <= a.size(); i++) {
             dp[i][0] = islower(a[i - 1]);
