@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -9,9 +10,7 @@ int main() {
         int n, m;
         cin >> n >> m;
         vector<bool> graph[n], visited(n);
-        for(auto& i : graph) {
-            i = vector<bool>(n);
-        }
+        fill(graph, graph + n, vector<bool>(n));
         for(auto i = 0; i != m; i++) {
             int j, k;
             cin >> j >> k;
@@ -19,17 +18,13 @@ int main() {
             graph[k - 1][j - 1] = true;
         }
         int s, distance[n];
-        for(auto& i : distance) {
-            i = -1;
-        }
+        fill(distance, distance + n, -1);
         cin >> s;
         queue<int> queue;
         queue.emplace(s - 1);
         visited[s - 1] = true;
-        auto d = 0;
-        while(!queue.empty()) {
+        for(auto d = 6; !queue.empty(); d += 6) {
             int size = queue.size();
-            d += 6;
             while(size > 0) {
                 size--;
                 auto front = queue.front();
