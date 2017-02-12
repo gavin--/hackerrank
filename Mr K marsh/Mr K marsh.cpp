@@ -6,9 +6,7 @@ int main() {
     int m, n, result = 0;
     cin >> m >> n;
     vector<bool> graph[m];
-    for(auto & i : graph) {
-        i = vector<bool>(n);
-    }
+    fill(graph, graph + m, vector<bool>(n));
     for(auto i = 0; i != m; i++) {
         string s;
         cin >> s;
