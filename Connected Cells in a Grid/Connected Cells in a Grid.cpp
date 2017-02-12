@@ -1,18 +1,17 @@
 #include <stack>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
     int n, m, result = 0;
     cin >> n >> m;
     vector<bool> x[n];
-    for(auto& i : x) {
-        i = vector<bool>(m);
-    }
+    fill(x, x + n, vector<bool>(m));
     for(auto i = 0; i != n; i++) {
         for(auto j = 0; j != m; j++) {
-            int k;
+            bool k;
             cin >> k;
             x[i][j] = k;
         }
