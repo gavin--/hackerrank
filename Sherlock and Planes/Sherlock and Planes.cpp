@@ -22,11 +22,10 @@ int main() {
             }
         }
         if(same[0] || same[1] || same[2]) {
-            cout << "YES";
+            cout << "YES\n";
         } else {
-            cout << "NO";
+            cout << "NO\n";
         }
-        cout << endl;
     }
     return 0;
 }
