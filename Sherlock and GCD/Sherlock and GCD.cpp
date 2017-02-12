@@ -24,9 +24,9 @@ int main() {
             d = gcd(A[i], d);
         }
         if(d > 1) {
-            cout << "NO" << endl;
+            cout << "NO\n";
         } else {
-            cout << "YES" << endl;
+            cout << "YES\n";
         }
     }
     return 0;
