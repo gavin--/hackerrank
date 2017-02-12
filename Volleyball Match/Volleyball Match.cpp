@@ -20,12 +20,12 @@ long long inverse(long long n) {
 }
 
 long long C(long long n, long long k) {
-	auto result = 1ll, temp = 1ll;
-	for(auto i = 1; i <= k; i++) {
-		result = result * (n - i + 1) % MOD;
-		temp = temp * i % MOD;
-	}
-	return result * inverse(temp) % MOD;
+    auto result = 1ll, temp = 1ll;
+    for(auto i = 1; i <= k; i++) {
+        result = result * (n - i + 1) % MOD;
+        temp = temp * i % MOD;
+    }
+    return result * inverse(temp) % MOD;
 }
 
 int main() {
