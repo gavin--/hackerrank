@@ -11,9 +11,7 @@ int main() {
         cin >> N >> M;
         forward_list<pair<int, int>> graph[N];
         int distance[N];
-        for(auto i = 0; i != N; i++) {
-            distance[i] = INT_MAX;
-        }
+        fill(distance, distance + N, INT_MAX);
         for(auto i = 0; i != M; i++) {
             int x, y, r;
             cin >> x >> y >> r;
