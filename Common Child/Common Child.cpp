@@ -1,26 +1,23 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
     string A, B;
     cin >> A >> B;
-    short** dp = new short*[A.size() + 1];
-    for(auto i = 0; i <= A.size(); i++) {
-        dp[i] = new short[B.size() + 1];
-    }
-    for(auto i = 0; i <= B.size(); i++) {
-        dp[0][i] = 0;
-    }
+    short dp[2][B.size() + 1], cur = 0, prev = 1;
+    fill(dp[0], dp[0] + B.size() + 1, 0);
     for(auto i = 1; i <= A.size(); i++) {
-        dp[i][0] = 0;
+        swap(cur, prev);
+        dp[cur][0] = 0;
         for(auto j = 1; j <= B.size(); j++) {
             if(A[i - 1] == B[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1] + 1;
+                dp[cur][j] = dp[prev][j - 1] + 1;
             } else {
-                dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);
+                dp[cur][j] = max(dp[cur][j - 1], dp[prev][j]);
             }
         }
     }
-    cout << dp[A.size()][B.size()];
+    cout << dp[cur][B.size()];
     return 0;
 }
