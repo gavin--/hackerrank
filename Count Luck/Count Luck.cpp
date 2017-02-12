@@ -7,27 +7,23 @@ int main() {
     int T;
     for(cin >> T; T > 0; T--) {
         int N, M, K, result = 0;
-        pair<int, int> start;
         cin >> N >> M;
         char forest[N][M];
         int count[N][M];
+        queue<pair<int, int>> queue;
+        vector<bool> visited[N];
+        fill(visited, visited + N, vector<bool>(M));
         for(auto i = 0; i != N; i++) {
             for(auto j = 0; j != M; j++) {
                 cin >> forest[i][j];
                 if(forest[i][j] == 'M') {
-                    start = pair<int, int>(i, j);
+                    queue.emplace(i, j);
+                    visited[i][j] = true;
+                    count[i][j] = 0;
                 }
             }
         }
         cin >> K;
-        queue<pair<int, int>> queue;
-        vector<bool> visited[N];
-        for(auto& i : visited) {
-            i = vector<bool>(M);
-        }
-        visited[start.first][start.second] = true;
-        count[start.first][start.second] = 0;
-        queue.emplace(start);
         while(true) {
             auto front = queue.front();
             queue.pop();
