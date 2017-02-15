@@ -19,7 +19,7 @@ long long pow(long long x, long long n) {
 int main() {
     long long N, M;
     cin >> N >> M;
-	vector<bool> prime(N + 1, 1);
+    vector<bool> prime(N + 1, 1);
     for(auto i = 2; i * i <= N; i++) {
         if(prime[i]) {
             for(auto j = i * i; j <= N; j += i) {
