@@ -3,7 +3,7 @@ using namespace std;
 
 const long long MOD = 1000000007;
 
-long long exp(long long x, long long n) {
+long long pow(long long x, long long n) {
     auto result = 1ll;
     while(n != 0) {
         if(n % 2 == 1) {
@@ -26,6 +26,6 @@ int main() {
             odd++;
         }
     }
-    cout << ((exp(2, even) * exp(2, odd - 1) - 1) % MOD + MOD) % MOD;
+    cout << ((pow(2, even) * pow(2, odd - 1) - 1) % MOD + MOD) % MOD;
     return 0;
 }
