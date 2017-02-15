@@ -35,7 +35,7 @@ int main() {
                 j *= i;
             }
             vector<long long> s, t;
-            for(auto sum = 0; j > 1 ; j /= i) {
+            for(auto sum = 0; j > 1; j /= i) {
                 s.emplace_back(N / j - sum);
                 sum += s.back();
             }
@@ -43,7 +43,7 @@ int main() {
             while(j * i <= M) {
                 j *= i;
             }
-            for(auto sum = 0; j > 1 ; j /= i) {
+            for(auto sum = 0; j > 1; j /= i) {
                 t.emplace_back(M / j - sum);
                 sum += t.back();
             }
