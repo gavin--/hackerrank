@@ -8,11 +8,10 @@ int main() {
         cin >> x >> y;
         auto r1 = (x - 1) % 4, r2 = (y - 1) % 4;
         if((r1 == 0 || r1 == 1) && (r2 == 0 || r2 == 1)) {
-            cout << "Second";
+            cout << "Second\n";
         } else {
-            cout << "First";
+            cout << "First\n";
         }
-        cout << endl;
     }
     return 0;
 }
