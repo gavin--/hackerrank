@@ -2,10 +2,10 @@
 #include <set>
 using namespace std;
 
-int grundy[15][15];
+char grundy[15][15];
 
 int mex(int x, int y) {
-	set<int> set;
+    set<int> set;
     if(x - 2 >= 0) {
         if(y - 1 >= 0) {
             if(grundy[x - 2][y - 1] != -1) {
@@ -38,8 +38,8 @@ int mex(int x, int y) {
             }
         }
     }
-	auto result = 0;
-	while(set.count(result) == 1) {
+    auto result = 0;
+    while(set.count(result) == 1) {
         result++;
     }
     return result;
