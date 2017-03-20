@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 int main() {
@@ -8,15 +7,11 @@ int main() {
         bool bob = false;
         int n;
         cin >> n;
-        pair<int, int> a[n];
-        for(auto i = 0; i != n; i++) {
-            cin >> a[i].first;
-            a[i].second = i;
-        }
-        sort(a, a + n, greater<pair<int, int>>());
-        for(auto i = 0, end = n; i != n; i++) {
-            if(a[i].second < end) {
-                end = a[i].second;
+        for(auto i = 0, max = 0; i != n; i++) {
+            int j;
+            cin >> j;
+            if(j > max) {
+                max = j;
                 bob = !bob;
             }
         }
