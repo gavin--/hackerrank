@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 const string wrong = "WRONG PASSWORD\n";
@@ -35,6 +36,7 @@ int main() {
         }
         cin >> loginAttempt;
         string dp[loginAttempt.size()];
+        fill(dp, dp + loginAttempt.size(), "");
         cout << check(pass, dp, loginAttempt, 0, N);
     }
     return 0;
