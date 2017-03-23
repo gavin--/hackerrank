@@ -1,29 +1,7 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
-const string wrong = "WRONG PASSWORD\n";
-
-string check(string* pass, string* dp, string& loginAttempt, int begin, int N) {
-    if(begin == loginAttempt.size()) {
-        return "\n";
-    }
-    if(!dp[begin].empty()) {
-        return dp[begin];
-    }
-    for(auto i = 0; i != N; i++) {
-        if(loginAttempt.compare(begin, pass[i].size(), pass[i]) == 0) {
-            auto rest = check(pass, dp, loginAttempt, begin + pass[i].size(), N);
-            if(rest != wrong) {
-                auto result = pass[i] + " " + rest;
-                dp[begin] = result;
-                return result;
-            }
-        }
-    }
-    dp[begin] = wrong;
-    return wrong;
-}
+const string wrong = "WRONG PASSWORD";
 
 int main() {
     int T;
@@ -35,9 +13,18 @@ int main() {
             cin >> pass[i];
         }
         cin >> loginAttempt;
-        string dp[loginAttempt.size()];
-        fill(dp, dp + loginAttempt.size(), "");
-        cout << check(pass, dp, loginAttempt, 0, N);
+        string dp[loginAttempt.size() + 1];
+        dp[0] = "";
+        for(auto i = 1; i <= loginAttempt.size(); i++) {
+            dp[i] = wrong;
+            for(auto j = 0; j != N; j++) {
+                if(i >= pass[j].size() && loginAttempt.compare(i - pass[j].size(), pass[j].size(), pass[j]) == 0 && dp[i - pass[j].size()] != wrong) {
+                    dp[i] = dp[i - pass[j].size()] + " " + pass[j];
+                    break;
+                }
+            }
+        }
+        cout << dp[loginAttempt.size()] << '\n';
     }
     return 0;
 }
