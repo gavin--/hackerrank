@@ -31,6 +31,10 @@ long long C(long long N, long long K) {
 int main() {
     int N, K;
     cin >> N >> K;
+    if(N == 1) {
+        cout << 0;
+        return 0;
+    }
     pair<int, int> rectangle[2], stain[N];
     cin >> rectangle[0].first >> rectangle[0].second;
     rectangle[1] = rectangle[0];
