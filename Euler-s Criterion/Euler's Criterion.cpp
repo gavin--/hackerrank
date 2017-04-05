@@ -18,14 +18,10 @@ int main() {
     for(cin >> T; T > 0; T--) {
         long long A, M;
         cin >> A >> M;
-        if(M == 2) {
+        if(pow(A, (M - 1) / 2, M) == 1 || A == 0) {
             cout << "YES\n";
         } else {
-            if(pow(A, (M - 1) / 2, M) == 1 || A == 0) {
-                cout << "YES\n";
-            } else {
-                cout << "NO\n";
-            }
+            cout << "NO\n";
         }
     }
     return 0;
