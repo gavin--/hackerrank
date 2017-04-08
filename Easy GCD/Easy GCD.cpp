@@ -11,14 +11,6 @@ int gcd(int a, int b) {
     return a;
 }
 
-int largest(int g, int k) {
-    auto l = g;
-    while(l + g <= k) {
-        l += g;
-    }
-    return l;
-}
-
 int main() {
     int n, k, g = 0, result = 0;
     cin >> n >> k;
@@ -28,15 +20,15 @@ int main() {
     for(auto i = 2; i * i <= g; i++) {
         if(g % i == 0) {
             if(i <= k) {
-                result = max(result, largest(i, k));
+                result = max(result, k / i * i);
             }
             if(g / i <= k) {
-                result = max(result, largest(g / i, k));
+                result = max(result, k / (g / i) * i);
             }
         }
     }
     if(g <= k) {
-        result = max(result, largest(g, k));
+        result = max(result, k / g * g);
     }
     cout << result;
     return 0;
