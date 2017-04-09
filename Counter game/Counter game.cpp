@@ -3,11 +3,10 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        unsigned long long n;
-        bool louise = false;
-        for(cin >> n; n > 1; louise = !louise) {
-            auto j = 1ull << 63;
+    cin >> T;
+    for(unsigned long long n; cin >> n; ) {
+        auto louise = false;
+        for(auto j = 1ull << 63; n > 1; louise = !louise) {
             while(j > n) {
                 j /= 2;
             }
