@@ -6,11 +6,12 @@ int main() {
     for(cin >> T; T > 0; T--) {
         string s;
         cin >> s;
-        bool funny = true;
+        auto funny = true;
         for(auto i = 1; i < s.size(); i++) {
             auto j = s.size() - i;
             if(abs(s[i] - s[i - 1]) != abs(s[j - 1] - s[j])) {
                 funny = false;
+                break;
             }
         }
         if(funny) {
