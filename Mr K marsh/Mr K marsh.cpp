@@ -12,7 +12,7 @@ int main() {
         cin >> s;
         for(auto j = 0; j != n; j++) {
             if(s[j] == 'x') {
-                graph[i][j] = 1;
+                graph[i][j] = true;
             }
         }
     }
@@ -24,7 +24,7 @@ int main() {
     }
     for(auto i = 0; i != n; i++) {
         for(auto j = 0; j != m; j++) {
-            bool marsh = false;
+            auto marsh = false;
             for(auto k = j + 1; k < m; k++) {
                 if(graph[k][i] == 1) {
                     marsh = true;
@@ -37,7 +37,7 @@ int main() {
                         if(dp[j][k] < 0) {
                             dp[j][k] = 0;
                         } else if(dp[j][k] > 0) {
-                            result = max(result, 2 * dp[j][k] + 2 * (k - j));
+                            result = max(result, 2 * (dp[j][k] + k - j));
                         }
                     }
                 } else {
