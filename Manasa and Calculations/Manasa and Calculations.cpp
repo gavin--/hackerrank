@@ -26,12 +26,12 @@ int main() {
         auto n = pow(p, a), m = pow(p, b);
         if(a != b) {
             result = (result * n + result * m) % MOD;
+            same = false;
         } else {
             result = result * n % MOD;
         }
         A = A * n % MOD;
         B = B * m % MOD;
-        same = same && b == a;
     }
     if(same) {
         result = (A + B) % MOD;
