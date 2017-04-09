@@ -3,13 +3,11 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        string s;
-        cin >> s;
+    cin >> T;
+    for(string s; cin >> s; ) {
         auto funny = true;
         for(auto i = 1; i < s.size(); i++) {
-            auto j = s.size() - i;
-            if(abs(s[i] - s[i - 1]) != abs(s[j - 1] - s[j])) {
+            if(abs(s[i] - s[i - 1]) != abs(s.rbegin()[i] - s.rbegin()[i - 1])) {
                 funny = false;
                 break;
             }
