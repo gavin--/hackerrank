@@ -6,9 +6,7 @@ int main() {
     cin >> T;
     for(int N; cin >> N; ) {
         auto result = 1ll;
-        bool d = true;
-        while(N > 0) {
-            N--;
+        for(auto d = true; N > 0; N--) {
             if(d) {
                 result *= 2;
                 d = false;
