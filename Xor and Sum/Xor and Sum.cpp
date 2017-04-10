@@ -31,7 +31,7 @@ int main() {
         if(a[i] == '0') {
             ans = (ans + sum[i] * pow[i]) % MOD;
         } else {
-        	ans = (ans + (D - sum[i] + 1) * pow[i]) % MOD;
+            ans = (ans + (D - sum[i] + 1) * pow[i]) % MOD;
         }
     }
     ans = (ans + sum[size - 1] * pow[size] % MOD * (pow[D - size + 1] - 1 + MOD) % MOD) % MOD;
