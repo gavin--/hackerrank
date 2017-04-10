@@ -6,9 +6,8 @@ const int MOD = 1000000007;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; ) {
         int dp[N + 1], c[N];
         dp[0] = 1;
         for(auto i = 0; i < N; i++) {
@@ -18,14 +17,12 @@ int main() {
         for(auto i = 1; i <= N; i++) {
             long long t = i - c[i - 1];
             if(t < 0) {
-                cout << 0 << endl;
-                goto next;
+                dp[N] = 0;
+                break;
             }
-            dp[i] = (dp[i - 1] * t) % MOD;
+            dp[i] = dp[i - 1] * t % MOD;
         }
         cout << dp[N] << endl;
-        next:
-        ;
     }
     return 0;
 }
