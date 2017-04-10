@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 int main() {
@@ -8,9 +9,7 @@ int main() {
     long long dp[N + 1][M + 1];
     for(auto i = 1; cin >> C[i]; i++) {
     }
-    for(auto i = 0; i <= M; i++) {
-        dp[0][i] = 1;
-    }
+    fill(dp[0], dp[0] + M + 1, 1);
     for(auto i = 1; i <= N; i++) {
         dp[i][0] = 0;
         for(auto j = 1; j <= M; j++) {
