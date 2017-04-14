@@ -3,8 +3,9 @@
 using namespace std;
 
 int main() {
-    int n, result = 0;
+    int n;
     string s;
+    auto result = s.size();
     cin >> n >> s;
     set<char> set;
     for(auto& i : s) {
@@ -13,20 +14,20 @@ int main() {
     for(auto& i : set) {
         for(auto& j : set) {
             if(i != j) {
-                string copy;
+                string t;
                 for(auto& k : s) {
                     if(k == i || k == j) {
-                        copy.push_back(k);
+                        t.push_back(k);
                     }
                 }
-                bool t = true;
-                for(auto k = 1; k != copy.size(); k++) {
-                    if(copy[k] == copy[k - 1]) {
-                        t = false;
+                auto alternating = true;
+                for(auto k = 1; k != t.size(); k++) {
+                    if(t[k] == t[k - 1]) {
+                        alternating = false;
                     }
                 }
-                if(t && copy.size() > result) {
-                    result = copy.size();
+                if(alternating && t.size() > result) {
+                    result = t.size();
                 }
             }
         }
