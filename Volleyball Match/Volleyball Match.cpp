@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const long long MOD = 1000000007;
+const long long MOD = 1000000007, c48c24 = 603457371;
 
 long long pow(long long x, int n) {
     auto result = 1;
@@ -38,7 +38,7 @@ int main() {
         B = min(B, 24);
         cout << C(A + B, B);
     } else {
-        cout << C(48, 24) * pow(2, min(A, B) - 24) % MOD;
+        cout << c48c24 * pow(2, min(A, B) - 24) % MOD;
     }
     return 0;
 }
