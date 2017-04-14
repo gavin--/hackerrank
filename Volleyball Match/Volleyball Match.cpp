@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-const long long MOD = 1000000007, c48c24 = 603457371;
+const long long MOD = 1000000007, N48C24 = 603457371;
 
 long long pow(long long x, int n) {
     auto result = 1;
@@ -34,11 +34,9 @@ int main() {
     if(A < 24 && B != 25 || A != 25 && B < 24 || A >= 24 && B >= 24 && abs(A - B) != 2) {
         cout << 0;
     } else if(A <= 25 || B <= 25) {
-        A = min(A, 24);
-        B = min(B, 24);
-        cout << C(A + B, B);
+        cout << C(min(A, 24) + min(B, 24), min(B, 24));
     } else {
-        cout << c48c24 * pow(2, min(A, B) - 24) % MOD;
+        cout << N48C24 * pow(2, min(A, B) - 24) % MOD;
     }
     return 0;
 }
