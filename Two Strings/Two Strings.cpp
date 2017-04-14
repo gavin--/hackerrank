@@ -1,19 +1,18 @@
 #include <iostream>
-#include <map>
+#include <set>
 using namespace std;
 
 int main() {
     int p;
-    for(cin >> p; p > 0; p--) {
-        string a, b;
-        cin >> a >> b;
-        map<char, int> count;
+    cin >> p;
+    for(string a, b; cin >> a >> b; ) {
+        set<char> set;
         for(auto& i : a) {
-            count[i]++;
+            set.emplace(i);
         }
-        bool common = false;
+        auto common = false;
         for(auto& i : b) {
-            if(count.find(i) != count.end()) {
+            if(set.find(i) != end(set)) {
                 common = true;
                 break;
             }
