@@ -6,9 +6,8 @@ const long long MOD = 1000000007;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        long long L1, R1, L2, R2, L3, R3, L4, R4;
-        cin >> L1 >> R1 >> L2 >> R2 >> L3 >> R3 >> L4 >> R4;
+    cin >> T;
+    for(long long L1, R1, L2, R2, L3, R3, L4, R4; cin >> L1 >> R1 >> L2 >> R2 >> L3 >> R3 >> L4 >> R4; ) {
         auto I1 = R1 - L1 + 1, I2 = R2 - L2 + 1, I3 = R3 - L3 + 1, I4 = R4 - L4 + 1;
         auto result = I1 * I2 % MOD * I3 % MOD * I4 % MOD;
         result = (result - max(min(R1, R2) - max(L1, L2) + 1, 0ll) * I3 % MOD * I4) % MOD;
