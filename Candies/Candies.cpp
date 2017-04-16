@@ -2,26 +2,34 @@
 using namespace std;
 
 int main() {
-    int N;
-    cin >> N;
-    int rating[N], dp[N];
-    for(auto i = 0; cin >> rating[i]; i++) {
-    }
-    dp[0] = 1;
-    for(auto i = 1; i < N; i++) {
-        if(rating[i] > rating[i - 1]) {
-            dp[i] = dp[i - 1] + 1;
+    long long N, result = 1, descending = 0, last, peak = 1;
+    cin >> N >> last;
+    for(long long rating; cin >> rating; last = rating) {
+        if(rating >= last) {
+            if(descending > 0) {
+                result += descending * (descending + 1) / 2;
+                if(descending >= peak) {
+                    result += descending - peak + 1;
+                }
+                peak = 1;
+                descending = 0;
+            }
+            if(rating > last) {
+                peak = peak + 1;
+            } else {
+                peak = 1;
+            }
+            result += peak;
         } else {
-            dp[i] = 1;
+            descending++;
         }
     }
-    long long sum = dp[N - 1];
-    for(auto i = N - 2; i >= 0; i--) {
-        if(rating[i] > rating[i + 1] && dp[i] <= dp[i + 1]) {
-            dp[i] = dp[i + 1] + 1;
+    if(descending > 0) {
+        result += descending * (descending + 1) / 2;
+        if(descending >= peak) {
+            result += descending - peak + 1;
         }
-        sum += dp[i];
     }
-    cout << sum;
+    cout << result;
     return 0;
 }
