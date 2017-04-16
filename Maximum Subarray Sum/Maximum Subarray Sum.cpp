@@ -4,15 +4,13 @@ using namespace std;
 
 int main() {
     int q;
-    for(cin >> q; q > 0; q--) {
-        long long n, m;
-        cin >> n >> m;
+    cin >> q;
+    for(long long n, m; cin >> n >> m; ) {
         pair<long long, int> sum[n];
         for(auto i = 0ll, j = 0ll; i != n; i++) {
-            int k;
+            long long k;
             cin >> k;
-            j = (j + k) % m;
-            sum[i] = {j, i};
+            sum[i] = {(j + k) % m, i};
         }
         sort(sum, sum + n);
         auto result = sum[n - 1].first;
