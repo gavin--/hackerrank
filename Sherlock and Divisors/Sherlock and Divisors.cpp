@@ -3,16 +3,15 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; ) {
         auto i = 2, result = 0;
         for(; i < N / i; i++) {
             if(N % i == 0) {
                 if(i % 2 == 0) {
-                result++;
+                    result++;
                 }
-                if((N / i) % 2 == 0) {
+                if(N / i % 2 == 0) {
                     result++;
                 }
             }
