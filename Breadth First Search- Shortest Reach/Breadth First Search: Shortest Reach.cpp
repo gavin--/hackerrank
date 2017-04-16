@@ -6,9 +6,8 @@ using namespace std;
 
 int main() {
     int q;
-    for(cin >> q; q > 0; q--) {
-        int n, m;
-        cin >> n >> m;
+    cin >> q;
+    for(int n, m; cin >> n >> m; ) {
         vector<bool> graph[n], visited(n);
         fill(graph, graph + n, vector<bool>(n));
         for(auto i = 0; i != m; i++) {
@@ -24,9 +23,7 @@ int main() {
         queue.emplace(s - 1);
         visited[s - 1] = true;
         for(auto d = 6; !queue.empty(); d += 6) {
-            int size = queue.size();
-            while(size > 0) {
-                size--;
+            for(auto size = queue.size(); size > 0; size--) {
                 auto front = queue.front();
                 queue.pop();
                 for(auto i = 0; i != n; i++) {
