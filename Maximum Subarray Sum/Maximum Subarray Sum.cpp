@@ -10,7 +10,8 @@ int main() {
         for(auto i = 0ll, j = 0ll; i != n; i++) {
             long long k;
             cin >> k;
-            sum[i] = {(j + k) % m, i};
+            j = (j + k) % m;
+            sum[i] = {j, i};
         }
         sort(sum, sum + n);
         auto result = sum[n - 1].first;
