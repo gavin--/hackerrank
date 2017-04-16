@@ -12,16 +12,13 @@ int gcd(int a, int b) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        cin >> N;
-        int A[N];
+    cin >> T;
+    for(int N; cin >> N; ) {
+        int d = 0;
         for(auto i = 0; i != N; i++) {
-            cin >> A[i];
-        }
-        auto d = A[0];
-        for(auto i = 1; i < N; i++) {
-            d = gcd(A[i], d);
+            int A;
+            cin >> A;
+            d = gcd(A, d);
         }
         if(d > 1) {
             cout << "NO\n";
