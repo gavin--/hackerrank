@@ -3,14 +3,10 @@
 using namespace std;
 
 int main() {
-    int n;
     string s;
-    auto result = s.size();
+    size_t result = 0, n;
     cin >> n >> s;
-    set<char> set;
-    for(auto& i : s) {
-        set.emplace(i);
-    }
+    set<char> set(s.begin(), s.end());
     for(auto& i : set) {
         for(auto& j : set) {
             if(i != j) {
