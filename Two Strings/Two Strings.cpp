@@ -6,22 +6,15 @@ int main() {
     int p;
     cin >> p;
     for(string a, b; cin >> a >> b; ) {
-        set<char> set;
-        for(auto& i : a) {
-            set.emplace(i);
-        }
-        auto common = false;
+        set<char> set(a.begin(), a.end());
+        auto result = "NO\n";
         for(auto& i : b) {
             if(set.find(i) != end(set)) {
-                common = true;
+                result = "YES\n";
                 break;
             }
         }
-        if(common) {
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
-        }
+        cout << result;
     }
     return 0;
 }
