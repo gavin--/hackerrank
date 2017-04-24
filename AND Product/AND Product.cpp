@@ -8,9 +8,10 @@ int main() {
     for(unsigned long long a, b; cin >> a >> b; ) {
         auto c = ULLONG_MAX;
         b ^= a;
-        while(b /= 2) {
+        do {
+            b /= 2;
             c *= 2;
-        }
+        } while (b != 0);
         cout << (a & c) << endl;
     }
     return 0;
