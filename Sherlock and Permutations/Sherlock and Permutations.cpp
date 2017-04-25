@@ -15,14 +15,14 @@ long long pow(long long x, long long n) {
     return result;
 }
 
-long long inverse(long long N) {
-    return pow(N, MOD - 2);
+long long inverse(long long n) {
+    return pow(n, MOD - 2);
 }
 
-long long C(long long N, long long M) {
+long long C(long long n, long long m) {
     auto top = 1ll, bottom = 1ll;
-    for(auto i = 1ll; i <= M; i++) {
-        top = top * (N + 1 - i) % MOD;
+    for(auto i = 1ll; i <= m; i++) {
+        top = top * (n + 1 - i) % MOD;
         bottom = bottom * i % MOD;
     }
     return top * inverse(bottom) % MOD;
@@ -30,10 +30,8 @@ long long C(long long N, long long M) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        long long N, M;
-        cin >> N >> M;
-        cout << C(N + M - 1, N) << endl;
+    cin >> T;
+    for(long long N, M; cin >> N >> M; cout << C(N + M - 1, N) << endl) {
     }
     return 0;
 }
