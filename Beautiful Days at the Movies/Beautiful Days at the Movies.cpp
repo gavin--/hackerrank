@@ -1,16 +1,11 @@
-#include <vector>
 #include <iostream>
 using namespace std;
 
 int reverse(int i) {
-    vector<int> v;
-    while(i != 0) {
-        v.emplace_back(i % 10);
-        i /= 10;
-    }
     auto result = 0;
-    for(auto i = 0, j = 1; i != v.size(); i++, j *= 10) {
-        result += v.rbegin()[i] * j;
+    while(i != 0) {
+        result = result * 10 + i % 10;
+        i /= 10;
     }
     return result;
 }
