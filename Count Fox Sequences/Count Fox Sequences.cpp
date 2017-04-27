@@ -34,14 +34,13 @@ int main() {
         } else {
             precompute(n, k);
             for(auto i = (n + k - 2) / k + 1; i <= n; i++) {
-                auto current = 0ll;
                 for(auto j = 1, sign = 1; j <= n / i; j++, sign *= -1) {
-                    current = (current + sign * C(n + k - 2 - j * i, k - 2) * C(k - 1, j - 1)) % MOD;
+                    result = (result + sign * C(n + k - 2 - j * i, k - 2) * C(k - 1, j - 1)) % MOD;
                 }
-                result = (result + k * current) % MOD;
             }
             delete[](factorial);
             delete[](ifactorial);
+            result = result * k % MOD;
         }
         cout << result << endl;
     }
