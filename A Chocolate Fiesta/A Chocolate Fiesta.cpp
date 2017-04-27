@@ -18,14 +18,9 @@ long long pow(long long x, long long n) {
 int main() {
     int N;
     cin >> N;
-    auto even = 0ll, odd = 0ll;
-    for(int i; cin >> i; ) {
-        if(i % 2 == 0) {
-            even++;
-        } else {
-            odd++;
-        }
+    long long parity[2] = {};
+    for(int i; cin >> i; parity[i % 2]++) {
     }
-    cout << ((pow(2, even) * pow(2, odd - 1) - 1) % MOD + MOD) % MOD;
+    cout << (pow(2, parity[0]) * pow(2, parity[1] - 1) + MOD - 1) % MOD;
     return 0;
 }
