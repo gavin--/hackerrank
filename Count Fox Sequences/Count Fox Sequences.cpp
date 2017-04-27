@@ -40,8 +40,8 @@ int main() {
                 }
                 result = (result + k * current) % MOD;
             }
-            delete(factorial);
-            delete(ifactorial);
+            delete[](factorial);
+            delete[](ifactorial);
         }
         cout << result << endl;
     }
