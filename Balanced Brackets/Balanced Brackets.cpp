@@ -33,10 +33,8 @@ string check(string& s) {
 
 int main() {
     int n;
-    for(cin >> n; n > 0; n--) {
-        string s;
-        cin >> s;
-        cout << check(s);
+    cin >> n;
+    for(string s; cin >> s; cout << check(s)) {
     }
     return 0;
 }
