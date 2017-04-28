@@ -1,13 +1,13 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
 using namespace std;
 
 const long long MOD = 1000000007;
-long long *factorial, *ifactorial, *inv;
+long long *factorial, *ifactorial;
 
 void precompute(long long n, long long k) {
-    factorial = new long long[n], ifactorial = new long long[n], inv = new long long[n];
+    factorial = new long long[n], ifactorial = new long long[n];
+    long long inv[n];
     factorial[0] = 1;
     ifactorial[0] = 1;
     inv[1] = 1;
