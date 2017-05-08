@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-bool palindrome(string S) {
+bool palindrome(const string& S) {
     for(auto i = 0; i < S.size() / 2; i++) {
         if(S[i] != S.rbegin()[i]) {
             return false;
