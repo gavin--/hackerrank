@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-vector<string> generate(string S) {
+vector<string> generate(const string& S) {
     vector<string> result;
     for(auto i = 0; i != S.size(); i++) {
         auto current = generate(S.substr(i + 1));
@@ -23,11 +23,9 @@ void print(string& S) {
 }
 
 int main() {
-    int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        string S;
-        cin >> N >> S;
+    int T, N;
+    cin >> T;
+    for(string S; cin >> N >> S; ) {
         sort(begin(S), end(S));
         print(S);
     }
