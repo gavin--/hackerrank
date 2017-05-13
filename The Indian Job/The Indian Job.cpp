@@ -4,41 +4,30 @@ using namespace std;
  
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, G, sum = 0;
-        cin >> N >> G;
-        int A[N];
+    cin >> T;
+    for(int N, G; cin >> N >> G; ) {
+        int A[N], sum = 0;
         for(auto i = 0; i != N; i++) {
             cin >> A[i];
             sum += A[i];
         }
         G = min(G, sum);
-        vector<bool> dp[G + 1];
-        dp[0] = vector<bool>(2, 1);
-        for(auto i = 1; i <= G; i++) {
-            dp[i] = vector<bool>(2, 0);
-        }
-        auto cur = 0, prev = 1;
+        vector<bool> dp(G + 1, 0);
+        dp[0] = 1;
         for(auto i = 1; i <= N; i++) {
-            swap(cur, prev);
-            for(auto j = 0; j <= G; j++) {
-                dp[j][cur] = dp[j][prev];
+            for(auto j = G; j >= 0; j--) {
                 if(j >= A[i - 1]) {
-                    dp[j][cur] = dp[j][cur] || dp[j - A[i - 1]][prev];
+                    dp[j] = dp[j] || dp[j - A[i - 1]];
                 }
             }
         }
-        auto result = false;
+        string result = "NO\n";
         for(auto i = 0; i <= G; i++) {
-            if(dp[i][cur] && sum - i <= G) {
-                result = true;
+            if(dp[i] && sum - i <= G) {
+                result = "YES\n";
             }
         }
-        if(result) {
-            cout << "YES\n";
-        } else {
-            cout << "NO\n";
-        }
+        cout << result;
     }
     return 0;
 }
