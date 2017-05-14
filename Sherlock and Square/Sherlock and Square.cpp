@@ -17,10 +17,8 @@ long long pow(long long x, long long n) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        long long N;
-        cin >> N;
-        cout << (pow(2, N + 1) + 2) % MOD << endl;
+    cin >> T;
+    for(long long N; cin >> N; cout << (pow(2, N + 1) + 2) % MOD << endl) {
     }
     return 0;
 }
