@@ -3,9 +3,8 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; cout << endl) {
         switch((N - 3) % 4) {
             case 0:
             case 2:
@@ -18,7 +17,6 @@ int main() {
                 cout << 4;
                 break;
         }
-        cout << endl;
     }
     return 0;
 }
