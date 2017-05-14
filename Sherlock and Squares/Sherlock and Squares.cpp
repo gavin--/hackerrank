@@ -3,10 +3,9 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int A, B, result = 0;
-        cin >> A >> B;
-        auto i = 1;
+    cin >> T;
+    for(int A, B; cin >> A >> B; ) {
+        auto i = 1, result = 0;
         while(i * i < A) {
             i++;
         }
