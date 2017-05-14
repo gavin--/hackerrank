@@ -1,15 +1,14 @@
-#include <vector>
 #include <iostream>
 using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; ) {
+        string result = "-1\n";
         for(auto i = 0; i <= N; i += 5) {
             if((N - i) % 3 == 0) {
-                string result;
+                result = "";
                 result.reserve(N);
                 for(auto j = 0; j != N - i; j++) {
                     result.push_back('5');
@@ -17,13 +16,11 @@ int main() {
                 for(auto j = 0; j != i; j++) {
                     result.push_back('3');
                 }
-                cout << result << endl;
-                goto next;
+                result.push_back('\n');
+                break;
             }
         }
-        cout << -1 << endl;
-        next:
-        ;
+        cout << result;
     }
     return 0;
 }
