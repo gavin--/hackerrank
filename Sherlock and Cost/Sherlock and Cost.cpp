@@ -1,4 +1,5 @@
 #include <iostream>
+#include <array>
 using namespace std;
 
 int main() {
@@ -9,11 +10,11 @@ int main() {
         for(auto i = 0; i != N; i++) {
             cin >> B[i];
         }
-        pair<long long, long long> dp = {0, 0};
+        array<long long, 2> dp = {0, 0};
         for(auto i = 1; i != N; i++) {
-            dp = {max(dp.first, dp.second + B[i - 1] - 1), max(dp.first + B[i] - 1, dp.second + abs(B[i] - B[i - 1]))};
+            dp = {max(dp[0], dp[1] + B[i - 1] - 1), max(dp[0] + B[i] - 1, dp[1] + abs(B[i] - B[i - 1]))};
         }
-        cout << max(dp.first, dp.second) << endl;
+        cout << max(dp[0], dp[1]) << endl;
     }
     return 0;
 }
