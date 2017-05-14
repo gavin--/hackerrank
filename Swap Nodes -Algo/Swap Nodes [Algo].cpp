@@ -27,9 +27,8 @@ int main() {
         tree[i].emplace_back(right);
     }
     cin >> T;
-    for(int K; cin >> K; ) {
+    for(int K; cin >> K; cout << endl) {
         swap(tree, 0, K, 1);
-        cout << endl;
     }
     return 0;
 }
