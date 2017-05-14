@@ -1,14 +1,14 @@
 #include <iostream>
+#include <climits>
 using namespace std;
 
 int main() {
-    int N, M;
+    int N, M, Q;
     cin >> N >> M;
     int dp[N][N];
-    const int MAX = N * 350;
     for(auto i = 0; i != N; i++) {
         for(auto j = 0; j != N; j++) {
-            dp[i][j] = MAX;
+            dp[i][j] = INT_MAX;
         }
         dp[i][i] = 0;
     }
@@ -20,24 +20,21 @@ int main() {
     for(auto k = 0; k != N; k++) {
         for(auto i = 0; i != N; i++) {
             for(auto j = 0; j != N; j++) {
-                if(dp[i][k] + dp[k][j] < dp[i][j]) {
+                if(dp[i][k] < dp[i][j] - dp[k][j]) {
                     dp[i][j] = dp[i][k] + dp[k][j];
                 }
             }
         }
     }
-    int Q;
-    for(cin >> Q; Q > 0; Q--) {
-        int a, b;
-        cin >> a >> b;
+    cin >> Q;
+    for(int a, b; cin >> a >> b; cout << endl) {
         a--;
         b--;
-        if(dp[a][b] == MAX) {
+        if(dp[a][b] == INT_MAX) {
             cout << -1;
         } else {
             cout << dp[a][b];
         }
-        cout << endl;
     }
     return 0;
 }
