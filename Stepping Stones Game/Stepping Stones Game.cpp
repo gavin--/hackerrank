@@ -14,20 +14,19 @@ long long isqrt(long long n) {
     return begin;
 }
 
-string check(long long N) {
+void check(long long N) {
     auto det = isqrt(1 + 8 * N);
     if(det * det != 1 + 8 * N || det % 2 == 0) {
-        return "Better Luck Next Time\n";
+        cout << "Better Luck Next Time\n";
+    } else {
+        cout << "Go On Bob " << (det - 1) / 2 << endl;
     }
-    return "Go On Bob " + to_string((det - 1) / 2) + "\n";
 }
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        long long N;
-        cin >> N;
-        cout << check(N);
+    cin >> T;
+    for(long long N; cin >> N; check(N)) {
     }
     return 0;
 }
