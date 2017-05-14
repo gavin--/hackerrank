@@ -34,11 +34,9 @@ int main() {
             c[1] = {abs(right + v[i] - left - v[j]), min(right + v[i], left + v[j])};
             c[2] = {abs(right - left - v[i] - v[j]), min(right, left + v[j] + v[i])};
             c[3] = {abs(right + v[j] - left - v[i]), min(right + v[j], left + v[i])};
-            sort(begin(c), end(c));
-            result.emplace_back(c[0]);
+            result.emplace_back(*min_element(begin(c), end(c)));
         }
     }
-    sort(begin(result), end(result));
-    cout << result.front().second;
+    cout << min_element(begin(result), end(result))->second;
     return 0;
 }
