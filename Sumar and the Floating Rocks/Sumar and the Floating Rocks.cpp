@@ -12,18 +12,16 @@ int gcd(int a, int b) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int x1, y1, x2, y2, result;
-        cin >> x1 >> y1 >> x2 >> y2;
+    cin >> T;
+    for(int x1, y1, x2, y2; cin >> x1 >> y1 >> x2 >> y2; cout << endl) {
         auto top = abs(y2 - y1), bottom = abs(x2 - x1);
         if(top == 0) {
-            result = bottom - 1;
+            cout << bottom - 1;
         } else if(bottom == 0) {
-            result = top - 1;
+            cout << top - 1;
         } else {
-            result = gcd(top, bottom) - 1;
+            cout << gcd(top, bottom) - 1;
         }
-        cout << result << endl;
     }
     return 0;
 }
