@@ -12,9 +12,8 @@ int gcd(int a, int b) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int a, b, c;
-        cin >> a >> b >> c;
+    cin >> T;
+    for(int a, b, c; cin >> a >> b >> c; ) {
         if(max(a, b) >= c && c % gcd(a, b) == 0) {
             cout << "YES\n";
         } else {
