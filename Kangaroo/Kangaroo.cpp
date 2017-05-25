@@ -10,9 +10,7 @@ int main() {
         } else {
             cout << "NO";
         }
-        return 0;
-    }
-    if((x1 - x2) % (v2 - v1) == 0 && (x1 - x2) / (v2 - v1) >= 0) {
+    } else if((x1 - x2) % (v2 - v1) == 0 && (x1 - x2) / (v2 - v1) >= 0) {
         cout << "YES";
     } else {
         cout << "NO";
