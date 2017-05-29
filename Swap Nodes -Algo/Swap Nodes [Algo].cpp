@@ -1,8 +1,8 @@
 #include <iostream>
-#include <vector>
+#include <array>
 using namespace std;
 
-void swap(vector<int>* tree, int root, int K, int level) {
+void swap(array<int, 2>* tree, int root, int K, int level) {
     if(root == -2) {
         return;
     }
@@ -17,14 +17,14 @@ void swap(vector<int>* tree, int root, int K, int level) {
 int main() {
     int n, T;
     cin >> n;
-    vector<int> tree[n];
+    array<int, 2> tree[n];
     for(auto i = 0; i < n; i++) {
         int left, right;
         cin >> left >> right;
         left--;
         right--;
-        tree[i].emplace_back(left);
-        tree[i].emplace_back(right);
+        tree[i][0] = left;
+        tree[i][1] = right;
     }
     cin >> T;
     for(int K; cin >> K; cout << endl) {
