@@ -17,9 +17,8 @@ long long pow(long long x, int n) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        long long N, M;
-        cin >> N >> M;
+    cin >> T;
+    for(long long N, M; cin >> N >> M; ) {
         if(M == 1 && N > 1 || M == 2 && N > 2) {
             cout << 0 << endl;
             continue;
