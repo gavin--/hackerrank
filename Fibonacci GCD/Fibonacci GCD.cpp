@@ -13,7 +13,7 @@ long long gcd(long long a, long long b) {
     return a;
 }
 
-array<array<long long, 2>, 2> mul(array<array<long long, 2>, 2>& a, array<array<long long, 2>, 2>& b) {
+array<array<long long, 2>, 2> multiply(array<array<long long, 2>, 2>& a, array<array<long long, 2>, 2>& b) {
     array<array<long long, 2>, 2> result;
     result[0][0] = (a[0][0] * b[0][0] + a[0][1] * b[1][0]) % MOD;
     result[0][1] = (a[0][0] * b[0][1] + a[0][1] * b[1][1]) % MOD;
@@ -22,22 +22,22 @@ array<array<long long, 2>, 2> mul(array<array<long long, 2>, 2>& a, array<array<
     return result;
 }
 
-array<array<long long, 2>, 2> pow(array<array<long long, 2>, 2> a, long long N) {
+array<array<long long, 2>, 2> pow(array<array<long long, 2>, 2> a, long long n) {
     array<array<long long, 2>, 2> result = {{{1, 0}, {0, 1}}};
-    while(N != 0) {
-        if(N % 2 == 1) {
-            result = mul(result, a);
+    while(n != 0) {
+        if(n % 2 == 1) {
+            result = multiply(result, a);
         }
-        N /= 2;
-        a = mul(a, a);
+        n /= 2;
+        a = multiply(a, a);
     }
     return result;
 }
 
-int fib(long long N) {
+int fib(long long n) {
     array<array<long long, 2>, 2> m = {{{1, 1}, {1, 0}}};
-    auto a = pow(m, N - 1);
-    return (a[1][0] + a[1][1]) % MOD;
+    auto result = pow(m, n - 1);
+    return (result[1][0] + result[1][1]) % MOD;
 }
 
 int main() {
@@ -45,8 +45,7 @@ int main() {
     cin >> N;
     long long result;
     cin >> result;
-    for(long long i; cin >> i; ) {
-        result = gcd(result, i);
+    for(long long i; cin >> i; result = gcd(result, i)) {
     }
     cout << fib(result);
     return 0;
