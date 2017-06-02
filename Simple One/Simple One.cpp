@@ -1,3 +1,4 @@
+#include <array>
 #include <iostream>
 using namespace std;
 
@@ -19,28 +20,26 @@ long long inverse(long long n) {
     return pow(n, MOD - 2);
 }
 
-pair<long long, long long> solve(pair<long long, long long>& tan, long long n) {
+array<long long, 2> solve(array<long long, 2>& tan, long long n) {
     if(n == 1) {
         return tan;
     }
     if(n % 2 == 1) {
         auto result = solve(tan, n - 1);
-        result = {(tan.first * result.second + result.first * tan.second) % MOD, (tan.second * result.second - tan.first * result.first) % MOD};
-        return result;
+        return {(tan[0] * result[1] + result[0] * tan[1]) % MOD, (tan[1] * result[1] - tan[0] * result[0]) % MOD};
     }
     auto result = solve(tan, n / 2);
-    result = {2 * result.first * result.second % MOD, (result.second * result.second - result.first * result.first) % MOD};
-    return result;
+    return {2 * result[0] * result[1] % MOD, (result[1] * result[1] - result[0] * result[0]) % MOD};
 }
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        pair<long long, long long> tan;
+    cin >> T;
+    for(array<long long, 2> tan; cin >> tan[0] >> tan[1]; ) {
         long long n;
-        cin >> tan.first >> tan.second >> n;
+        cin >> n;
         auto result = solve(tan, n);
-        cout << (result.first * inverse(result.second) % MOD + MOD) % MOD << endl;
+        cout << (result[0] * inverse(result[1]) % MOD + MOD) % MOD << endl;
     }
     return 0;
 }
