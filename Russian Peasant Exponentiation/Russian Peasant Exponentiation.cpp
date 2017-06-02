@@ -1,31 +1,33 @@
 #include <iostream>
+#include <array>
 using namespace std;
 
-pair<long long, long long> mul(pair<long long, long long>& a, pair<long long, long long>& b, long long m) {
-    pair<long long, long long> result = {((a.first * b.first - a.second * b.second) % m + m) % m, (a.first * b.second + b.first * a.second) % m};
-    return result;
+array<long long, 2> multiply(array<long long, 2>& a, array<long long, 2>& b, long long m) {
+    return array<long long, 2> {(a[0] * b[0] - a[1] * b[1]) % m, (a[0] * b[1] + b[0] * a[1]) % m};
 }
 
-pair<long long, long long> pow(pair<long long, long long>& n, long long k, long long m) {
-    pair<long long, long long> result = {1, 0};
+array<long long, 2> pow(array<long long, 2>& n, long long k, long long m) {
+    array<long long, 2> result = {1, 0};
     while(k != 0) {
         if(k % 2 == 1) {
-            result = mul(result, n, m);
+            result = multiply(result, n, m);
         }
-        n = mul(n, n, m);
+        n = multiply(n, n, m);
         k /= 2;
     }
+    result[0] = (result[0] + m) % m;
+    result[1] = (result[1] + m) % m;
     return result;
 }
 
 int main() {
     int q;
-    for(cin >> q; q > 0; q--) {
-        pair<long long, long long> n;
+    cin >> q;
+    for(array<long long, 2> n; cin >> n[0] >> n[1]; ) {
         long long k, m;
-        cin >> n.first >> n.second >> k >> m;
+        cin >> k >> m;
         auto result = pow(n, k, m);
-        cout << result.first << ' ' << result.second << endl;
+        cout << result[0] << ' ' << result[1] << endl;
     }
     return 0;
 }
