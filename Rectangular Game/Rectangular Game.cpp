@@ -1,16 +1,15 @@
-#include <set>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
 int main() {
     int T;
-    set<int> x, y;
-    for(cin >> T; T > 0; T--) {
-        int a, b;
-        cin >> a >> b;
-        x.emplace(a);
-        y.emplace(b);
+    cin >> T;
+    int x[T], y[T];
+    for(int a, b, i = 0; cin >> a >> b; i++) {
+        x[i] = a;
+        y[i] = b;
     }
-    cout << (long long)(*x.begin()) * (*y.begin()); 
+    cout << (long long)(*min_element(x, x + T)) * (*min_element(y, y + T)); 
     return 0;
 }
