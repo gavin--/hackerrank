@@ -1,20 +1,22 @@
-#include <set>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int n, a, b;
-        cin >> n >> a >> b;
-        set<int> set;
+    cin >> T;
+    for(int n, a, b; cin >> n >> a >> b; cout << endl) {
+        int result[n];
         for(auto i = 0; i < n; i++) {
-            set.emplace(i * a + (n - i - 1) * b);
+            result[i] = i * a + (n - i - 1) * b;
         }
-        for(auto& i : set) {
-            cout << i << ' ';
+        sort(result, result + n);
+        cout << result[0] << ' ';
+        for(auto i = 1; i < n; i++) {
+            if(result[i] != result[i - 1]) {
+                cout << result[i] << ' ';
+            }
         }
-        cout << endl;
     }
     return 0;
 }
