@@ -1,5 +1,6 @@
 #include <map>
-#include <set>
+#include <vector>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -13,7 +14,7 @@ int main() {
         a[j]++;
     }
     cin >> m;
-    set<int> missing;
+    vector<int> missing;
     for(int j; cin >> j; ) {
         auto find = a.find(j);
         if(find != a.end()) {
@@ -23,11 +24,17 @@ int main() {
                 find->second--;
             }
         } else {
-            missing.emplace(j);
+            missing.emplace_back(j);
         }
     }
-    for(auto& i : missing) {
-        cout << i << ' ';
+    sort(begin(missing), end(missing));
+    if(!missing.empty()) {
+        cout << missing[0] << ' ';
+    }
+    for(auto i = 1; i < missing.size(); i++) {
+        if(missing[i] != missing[i - 1]) {
+            cout << missing[i] << ' ';
+        }
     }
     return 0;
 }
