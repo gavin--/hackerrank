@@ -6,9 +6,8 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, M, S;
-        cin >> N >> M;
+    cin >> T;
+    for(int N, M, S; cin >> N >> M; cout << endl) {
         forward_list<pair<int, int>> graph[N];
         int distance[N];
         fill(distance, distance + N, INT_MAX);
@@ -44,7 +43,6 @@ int main() {
                 cout << ' ';
             }
         }
-        cout << endl;
     }
     return 0;
 }
