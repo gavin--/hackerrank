@@ -4,16 +4,15 @@ using namespace std;
 
 int main() {
     int n, count = 0;
+    cin >> n;
     set<string> set;
-    for(cin >> n; n > 0; n--) {
-        string operation, name;
-        cin >> operation >> name;
+    for(string operation, name; cin >> operation >> name; ) {
         if(operation == "add") {
             set.emplace(name);
         } else {
             auto find = set.lower_bound(name);
             auto count = 0;
-            while(find != set.end() && (*find).substr(0, name.size()) == name) {
+            while(find != set.end() && (*find).compare(0, name.size(), name) == 0) {
                 count++;
                 find++;
             }
