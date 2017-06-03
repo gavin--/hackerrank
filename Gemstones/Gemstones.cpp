@@ -1,4 +1,4 @@
-#include <set>
+#include <algorithm>
 #include <map>
 #include <iostream>
 using namespace std;
@@ -8,12 +8,12 @@ int main() {
     cin >> N;
     map<char, int> count;
     for(string rock; cin >> rock; ) {
-        set<char> s;
-        for(auto& i : rock) {
-            s.emplace(i);
-        }
-        for(auto& i : s) {
-            count[i]++;
+        sort(begin(rock), end(rock));
+        count[rock[0]]++;
+        for(auto i = 1; i < rock.size(); i++) {
+            if(rock[i] != rock[i - 1]) {
+                count[rock[i]]++;
+            }
         }
     }
     for(auto& i : count) {
