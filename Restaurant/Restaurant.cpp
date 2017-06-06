@@ -12,9 +12,8 @@ int gcd(int a, int b) {
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int l, b, result;
-        cin >> l >> b;
+    cin >> T;
+    for(int l, b; cin >> l >> b; ) {
         auto d = gcd(l, b);
         cout << (l / d) * (b / d) << endl;
     }
