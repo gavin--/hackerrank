@@ -2,17 +2,17 @@
 #include <iostream>
 using namespace std;
 
-bool remove(map<int, int>& size) {
-    if(size.size() == 1) {
+bool valid(map<int, int>& map) {
+    if(map.size() == 1) {
         return true;
     }
-    if(size.size() == 2) {
-        auto first = begin(size);
-        auto second = next(begin(size));
+    if(map.size() == 2) {
+        auto first = begin(map);
+        auto last = map.rbegin();
         if(first->first == 1 && first->second == 1) {
             return true;
         }
-        if(second->second == 1 && second->first == first->first + 1) {
+        if(last->second == 1 && last->first == first->first + 1) {
             return true;
         }
     }
@@ -26,11 +26,11 @@ int main() {
     for(auto& i : S) {
         count[i]++;
     }
-    map<int, int> size;
+    map<int, int> map;
     for(auto& i : count) {
-        size[i.second]++;
+        map[i.second]++;
     }
-    if(remove(size)) {
+    if(valid(map)) {
         cout << "YES";
     } else {
         cout << "NO";
