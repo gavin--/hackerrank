@@ -1,45 +1,38 @@
-#include <queue>
 #include <iostream>
 using namespace std;
 
 int main() {
-    queue<int> s1, s2, s3;
     int n1, n2, n3, h1 = 0, h2 = 0, h3 = 0;
     cin >> n1 >> n2 >> n3;
+    int s1[n1], s2[n2], s3[n3];
     for(auto i = 0; i != n1; i++) {
-        int s;
-        cin >> s;
-        h1 += s;
-        s1.emplace(s);
+        cin >> s1[i];
+        h1 += s1[i];
     }
     for(auto i = 0; i != n2; i++) {
-        int s;
-        cin >> s;
-        h2 += s;
-        s2.emplace(s);
+        cin >> s2[i];
+        h2 += s2[i];
     }
     for(auto i = 0; i != n3; i++) {
-        int s;
-        cin >> s;
-        h3 += s;
-        s3.emplace(s);
+        cin >> s3[i];
+        h3 += s3[i];
     }
-    while(h1 != h2 || h2 != h3) {
+    for(n1 = 0, n2 = 0, n3 = 0; h1 != h2 || h2 != h3; ) {
         if(h1 > h2) {
             if(h3 > h1) {
-                h3 -= s3.front();
-                s3.pop();
+                h3 -= s3[n3];
+                n3++;
             } else {
-                h1 -= s1.front();
-                s1.pop();
+                h1 -= s1[n1];
+                n1++;
             }
         } else {
             if(h3 > h2) {
-                h3 -= s3.front();
-                s3.pop();
+                h3 -= s3[n3];
+                n3++;
             } else {
-                h2 -= s2.front();
-                s2.pop();
+                h2 -= s2[n2];
+                n2++;
             }
         }
     }
