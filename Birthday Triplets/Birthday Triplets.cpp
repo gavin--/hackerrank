@@ -1,22 +1,22 @@
 #include <iostream>
 using namespace std;
 
-const long long mod = 1000000007;
+const long long MOD = 1000000007;
 
 long long pow(long long x, long long n) {
     auto result = 1ll;
     while(n != 0) {
         if(n % 2 == 1) {
-            result = result * x % mod;
+            result = result * x % MOD;
         }
         n /= 2;
-        x = x * x % mod;
+        x = x * x % MOD;
     }
     return result;
 }
 
 long long sqrt(long long n) {
-    auto begin = 1ll, end = n / 2;
+    auto begin = 0ll, end = n / 2 + 1;
     while(begin < end) {
         auto mid = (end + begin) / 2;
         if(mid < n / mid) {
@@ -29,10 +29,10 @@ long long sqrt(long long n) {
 }
 
 long long sum(long long a, long long l, long long r) {
-	if(a == 1) {
-		return (r - l + 1) % mod;
-	}
-	return pow(a, l) * (pow(a, r - l + 1) - 1) % mod * pow(a - 1, mod - 2) % mod;
+    if(a == 1) {
+        return (r - l + 1) % MOD;
+    }
+    return pow(a, l) * (pow(a, r - l + 1) - 1) % MOD * pow(a - 1, MOD - 2) % MOD;
 }
 
 int main() {
@@ -53,8 +53,7 @@ int main() {
                 auto b2 = b * b, b3 = b2 * b, b4 = b * b3;
                 auto c2 = c * c, c3 = c2 * c, c4 = c * c3;
                 if(a < b < c && a2 + b2 + c2 == f2 && a3 + b3 + c3 == f3 && a4 + b4 + c4 == f4) {
-                    auto s = (sum(a, l, r) + sum(b, l, r) + sum(c, l, r)) % mod;
-                    cout << s << endl;
+                    cout << (sum(a, l, r) + sum(b, l, r) + sum(c, l, r)) % MOD << endl;
                     goto next;
                 }
             }
