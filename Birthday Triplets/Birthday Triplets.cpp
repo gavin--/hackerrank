@@ -16,7 +16,7 @@ long long pow(long long x, long long n) {
 }
 
 long long sqrt(long long n) {
-    auto begin = 0ll, end = n / 2 + 1;
+    auto begin = 0ll, end = n;
     while(begin < end) {
         auto mid = (end + begin) / 2;
         if(mid < n / mid) {
