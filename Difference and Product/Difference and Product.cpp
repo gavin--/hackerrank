@@ -2,7 +2,7 @@
 using namespace std;
 
 long long sqrt(long long n) {
-    auto begin = 0ll, end = n / 2 + 1;
+    auto begin = 0ll, end = n;
     while(begin < end) {
         auto mid = (end + begin + 1) / 2;
         if(mid <= n / mid) {
@@ -36,10 +36,10 @@ int main() {
                 }
             }
         } else if(D > 0) {
-            auto discriminant = D * D + 4 * P, t = sqrt(discriminant);
+            auto discriminant = D * D + 4 * P, root = sqrt(discriminant);
             if(discriminant == 0) {
                 result = 2;
-            } else if(t * t == discriminant && (t - D) % 2 == 0) {
+            } else if(root * root == discriminant && (root - D) % 2 == 0) {
                 result = 4;
             }
         }
