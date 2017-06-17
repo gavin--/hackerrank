@@ -4,15 +4,15 @@
 #include <climits>
 using namespace std;
 
-void update(int* weight, set<int>& mst, forward_list<pair<int, int>>& adj, set<pair<int, int>>& s) {
+void update(int* weight, set<int>& mst, forward_list<pair<int, int>>& adj, set<pair<int, int>>& set) {
     for(auto& d : adj) {
         if(mst.find(d.first) != mst.end()) {
             continue;
         }
         if(weight[d.first] > d.second) {
-            s.erase({weight[d.first], d.first});
+            set.erase({weight[d.first], d.first});
             weight[d.first] = d.second;
-            s.emplace(d.second, d.first);
+            set.emplace(d.second, d.first);
         }
     }
 }
@@ -22,7 +22,8 @@ int main() {
     cin >> N >> M;
     int weight[N];
     fill(weight, weight + N, INT_MAX);
-    set<pair<int, int>> s;
+    set<int> mst = {0};
+    set<pair<int, int>> set;
     forward_list<pair<int, int>> graph[N];
     for(auto i = 0; i != M; i++) {
         int x, y, r;
@@ -32,17 +33,16 @@ int main() {
         graph[x].emplace_front(y, r);
         graph[y].emplace_front(x, r);
     }
-    set<int> mst = {0};
     auto result = 0;
-    update(weight, mst, graph[0], s);
-    while(!s.empty()) {
-        auto current = s.begin()->second;
-        auto cost = s.begin()->first;
-        s.erase(s.begin());
+    update(weight, mst, graph[0], set);
+    do {
+        auto current = set.begin()->second;
+        auto cost = set.begin()->first;
+        set.erase(set.begin());
         mst.emplace(current);
         result += cost;
-        update(weight, mst, graph[current], s);
-    }
+        update(weight, mst, graph[current], set);
+    } while(!set.empty());
     cout << result;
     return 0;
 }
