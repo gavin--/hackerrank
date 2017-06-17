@@ -1,26 +1,24 @@
 #include <vector>
 #include <stack>
-#include <forward_list>
 #include <iostream>
 using namespace std;
 
 int main() {
     int N, I;
     cin >> N >> I;
-    forward_list<int> graph[N];
+    vector<int> graph[N], country;
     for(int a, b; cin >> a >> b; ) {
-        graph[a].emplace_front(b);
-        graph[b].emplace_front(a);
+        graph[a].emplace_back(b);
+        graph[b].emplace_back(a);
     }
     vector<bool> visited(N);
-    vector<int> country;
     for(auto i = 0; i != N; i++) {
         if(visited[i] == false) {
             visited[i] = true;
             stack<int> stack;
             stack.emplace(i);
             auto size = 0;
-            while(!stack.empty()) {
+            do {
                 auto top = stack.top();
                 size++;
                 stack.pop();
@@ -30,7 +28,7 @@ int main() {
                         stack.emplace(j);
                     }
                 }
-            }
+            } while(!stack.empty());
             country.emplace_back(size);
         }
     }
