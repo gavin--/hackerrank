@@ -4,6 +4,13 @@
 #include <iostream>
 using namespace std;
 
+int reachable(int i) {
+    if(i == INT_MAX) {
+        return -1;
+    }
+    return i;
+}
+
 int main() {
     int T;
     cin >> T;
@@ -22,7 +29,7 @@ int main() {
         distance[S] = 0;
         set<pair<int, int>> set;
         set.emplace(0, S);
-        while(!set.empty()) {
+        do {
             auto current = set.begin()->second;
             set.erase(set.begin());
             for(auto& i : graph[current]) {
@@ -32,16 +39,12 @@ int main() {
                     set.emplace(distance[i.first], i.first);
                 }
             }
+        } while(!set.empty());
+        for(auto i = 0; i < S; i++) {
+            cout << reachable(distance[i]) << ' ';
         }
-        for(auto& i : distance) {
-            if(i != 0) {
-                if(i == INT_MAX) {
-                    cout << -1;
-                } else {
-                    cout << i;
-                }
-                cout << ' ';
-            }
+        for(auto i = S + 1; i < N; i++) {
+            cout << reachable(distance[i]) << ' ';
         }
     }
     return 0;
