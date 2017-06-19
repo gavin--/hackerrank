@@ -1,5 +1,6 @@
 #include <vector>
 #include <stack>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -7,6 +8,7 @@ int main() {
     int N, I;
     cin >> N >> I;
     vector<int> graph[N], country;
+    fill(graph, graph + N, vector<int>());
     for(int a, b; cin >> a >> b; ) {
         graph[a].emplace_back(b);
         graph[b].emplace_back(a);
