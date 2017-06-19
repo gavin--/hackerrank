@@ -28,7 +28,6 @@ int main() {
         sum += data[i];
     }
     forward_list<int> graph[n];
-    fill(graph, graph + n, forward_list<int>());
     for(int a, b; cin >> a >> b; ) {
         graph[a - 1].emplace_front(b - 1);
         graph[b - 1].emplace_front(a - 1);
