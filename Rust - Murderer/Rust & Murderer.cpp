@@ -10,7 +10,6 @@ int main() {
     cin >> T;
     for(int N, M, S; cin >> N >> M; cout << endl) {
         set<int> graph[N];
-        fill(graph, graph + N, set<int>());
         for(int x, y; M > 0; M--) {
             cin >> x >> y;
             x--;
