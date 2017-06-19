@@ -1,5 +1,6 @@
 #include <stack>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -9,6 +10,7 @@ int main() {
     for(int n, m, clib, croad; cin >> n >> m >> clib >> croad; ) {
         auto result = 0ll;
         vector<int> graph[n];
+        fill(graph, graph + n, vector<int>());
         for(auto i = 0; i != m; i++) {
             int j, k;
             cin >> j >> k;
