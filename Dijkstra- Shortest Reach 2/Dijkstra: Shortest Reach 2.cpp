@@ -1,6 +1,7 @@
 #include <forward_list>
 #include <set>
 #include <climits>
+#include <algorithm>
 #include <iostream>
 using namespace std;
 
@@ -16,6 +17,7 @@ int main() {
     cin >> T;
     for(int N, M, S; cin >> N >> M; cout << endl) {
         forward_list<pair<int, int>> graph[N];
+        fill(graph, graph + N, forward_list<pair<int, int>>());
         int distance[N];
         fill(distance, distance + N, INT_MAX);
         for(auto i = 0; i != M; i++) {
