@@ -26,7 +26,6 @@ int main() {
     set<int> mst = {0};
     set<pair<int, int>> set;
     forward_list<pair<int, int>> graph[N];
-    fill(graph, graph + N, forward_list<pair<int, int>>());
     for(int x, y, r; cin >> x >> y >> r; ) {
         x--;
         y--;
