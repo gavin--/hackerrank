@@ -6,7 +6,7 @@
 using namespace std;
 
 pair<int, int> longest(int start, int parent, vector<bool>& letters, vector<set<pair<int, int>>>& graph) {
-    vector<int> height;
+    vector<int> height {0, 0};
     auto diameter = 0;
     for(auto i : graph[start]) {
         if(i.first != parent) {
@@ -14,12 +14,6 @@ pair<int, int> longest(int start, int parent, vector<bool>& letters, vector<set<
             height.emplace_back(i.second + next.first);
             diameter = max(diameter, next.second);
         }
-    }
-    if(height.empty()) {
-        return {0, 0};
-    }
-    if(height.size() == 1) {
-        return {height[0], max(height[0], diameter)};
     }
     partial_sort(height.begin(), height.begin() + 2, height.end(), greater<int>());
     return {height[0], max(height[0] + height[1], diameter)};
