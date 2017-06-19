@@ -5,12 +5,12 @@
 #include <iostream>
 using namespace std;
 
-pair<int, int> longest(int start, int parent, vector<bool>& letters, vector<set<pair<int, int>>>& graph) {
+pair<int, int> longest(int start, int parent, set<pair<int, int>>* graph) {
     vector<int> height {0, 0};
     auto diameter = 0;
     for(auto i : graph[start]) {
         if(i.first != parent) {
-            auto next = longest(i.first, start, letters, graph);
+            auto next = longest(i.first, start, graph);
             height.emplace_back(i.second + next.first);
             diameter = max(diameter, next.second);
         }
@@ -29,7 +29,8 @@ int main() {
         letters[j] = true;
         start = j;
     }
-    vector<set<pair<int, int>>> graph(N, set<pair<int, int>>());
+    set<pair<int, int>> graph[N];
+    fill(graph, graph + N, set<pair<int, int>>());
     for(int u, v, d; cin >> u >> v >> d; result += d) {
         u--;
         v--;
@@ -53,6 +54,6 @@ int main() {
             }
         }
     }
-    cout << 2 * result - longest(start, -1, letters, graph).second;
+    cout << 2 * result - longest(start, -1, graph).second;
     return 0;
 }
