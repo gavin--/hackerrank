@@ -2,6 +2,7 @@
 #include <set>
 #include <iostream>
 #include <climits>
+#include <algorithm>
 using namespace std;
 
 void update(int* weight, set<int>& mst, forward_list<pair<int, int>>& adj, set<pair<int, int>>& set) {
@@ -25,9 +26,8 @@ int main() {
     set<int> mst = {0};
     set<pair<int, int>> set;
     forward_list<pair<int, int>> graph[N];
-    for(auto i = 0; i != M; i++) {
-        int x, y, r;
-        cin >> x >> y >> r;
+    fill(graph, graph + N, forward_list<pair<int, int>>());
+    for(int x, y, r; cin >> x >> y >> r; ) {
         x--;
         y--;
         graph[x].emplace_front(y, r);
