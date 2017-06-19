@@ -19,6 +19,7 @@ int main() {
     int n;
     cin >> n;
     forward_list<int> graph[n];
+    fill(graph, graph + n, forward_list<int>());
     for(int i, j; cin >> i >> j; ) {
         graph[i - 1].emplace_front(j - 1);
         graph[j - 1].emplace_front(i - 1);
