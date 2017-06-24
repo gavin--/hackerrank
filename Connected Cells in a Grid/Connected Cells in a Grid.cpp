@@ -20,10 +20,10 @@ int main() {
         for(auto j = 0; j != m; j++) {
             if(x[i][j]) {
                 auto current = 0;
-                x[i][j] = 0;
+                x[i][j] = false;
                 stack<pair<int, int>> stack;
                 stack.emplace(i, j);
-                while(!stack.empty()) {
+                do {
                     auto top = stack.top();
                     stack.pop();
                     current++;
@@ -32,13 +32,13 @@ int main() {
                         for(auto l = -1; l <= 1; l++) {
                             if(top.first + k >= 0 && top.first + k < n && top.second + l >= 0 && top.second < m) {
                                 if(x[top.first + k][top.second + l]) {
-                                    x[top.first + k][top.second + l] = 0;
+                                    x[top.first + k][top.second + l] = false;
                                     stack.emplace(top.first + k, top.second + l);
                                 }
                             }
                         }
                     }
-                }
+                } while(!stack.empty());
             }
         }
     }
