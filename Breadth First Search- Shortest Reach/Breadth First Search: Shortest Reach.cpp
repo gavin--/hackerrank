@@ -1,20 +1,18 @@
 #include <vector>
 #include <iostream>
 #include <queue>
-#include <algorithm>
 using namespace std;
 
 int main() {
     int q;
     cin >> q;
-    for(int n, m; cin >> n >> m; ) {
-        vector<bool> graph[n], visited(n);
-        fill(graph, graph + n, vector<bool>(n));
+    for(int n, m; cin >> n >> m; cout << endl) {
+        vector<int> graph[n], visited(n);
         for(auto i = 0; i != m; i++) {
             int j, k;
             cin >> j >> k;
-            graph[j - 1][k - 1] = true;
-            graph[k - 1][j - 1] = true;
+            graph[j - 1].emplace_back(k - 1);
+            graph[k - 1].emplace_back(j - 1);
         }
         int s, distance[n];
         fill(distance, distance + n, -1);
@@ -26,8 +24,8 @@ int main() {
             for(auto size = queue.size(); size > 0; size--) {
                 auto front = queue.front();
                 queue.pop();
-                for(auto i = 0; i != n; i++) {
-                    if(visited[i] == false && graph[i][front]) {
+                for(auto i : graph[front]) {
+                    if(visited[i] == false) {
                         distance[i] = d;
                         queue.emplace(i);
                         visited[i] = true;
@@ -35,12 +33,12 @@ int main() {
                 }
             }
         }
-        for(auto i = 0; i != n; i++) {
-            if(i != s - 1) {
-                cout << distance[i] << ' ';
-            }
+        for(auto i = 0; i < s - 1; i++) {
+            cout << distance[i] << ' ';
         }
-        cout << endl;
+        for(auto i = s; i < n; i++) {
+            cout << distance[i] << ' ';
+        }
     }
     return 0;
 }
