@@ -27,15 +27,14 @@ int main() {
             low *= 2;
         }
     }
-    auto i = 1;
-    for(; i < n; i++) {
+    for(auto i = 1; i < n; i++) {
         if(a[i] >= low) {
+            for(auto j = 0; j < i; j++) {
+                for(auto k = i; k < n; k++) {
+                    result = min(result, a[j] ^ a[k]);
+                }
+            }
             break;
-        }
-    }
-    for(auto j = 0; j < i; j++) {
-        for(auto k = i; k < n; k++) {
-            result = min(result, a[j] ^ a[k]);
         }
     }
     cout << result;
