@@ -4,15 +4,12 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int n, k, a;
-        cin >> n >> k;
+    cin >> T;
+    for(int n, k; cin >> n >> k; ) {
         int dp[2][k];
         fill(dp[0], dp[0] + k, 0);
-        cin >> a;
-        dp[0][a % k]++;
         long long result = dp[0][0];
-        for(auto i = 1, cur = 0, prev = 1; i != n; i++) {
+        for(auto cur = 0, prev = 1; n > 0; n--) {
             int a;
             cin >> a;
             swap(cur, prev);
