@@ -5,18 +5,17 @@ const int MOD = 1000000000;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, K;
-        cin >> N >> K;
-        int dp[N + K][N + K];
+    cin >> T;
+    for(int N, K; cin >> N >> K; ) {
+        int dp[N + K];
         for(auto i = 1; i < N + K; i++) {
-            dp[i][0] = 1;
-            dp[i][i] = 1;
-            for(auto j = 1; j < i; j++) {
-                dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j]) % MOD;
+            dp[0] = 1;
+            dp[i] = 1;
+            for(auto j = i - 1; j > 0; j--) {
+                dp[j] = (dp[j - 1] + dp[j]) % MOD;
             }
         }
-        cout << dp[N + K - 1][N - 1] << endl;
+        cout << dp[N - 1] << endl;
     }
     return 0;
 }
