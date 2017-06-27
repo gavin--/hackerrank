@@ -3,9 +3,8 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, K;
-        cin >> N >> K;
+    cin >> T;
+    for(int N, K; cin >> N >> K; ) {
         for(auto i = N - 1, j = 0; ; j++) {
             if(i == K) {
                 cout << j << endl;
