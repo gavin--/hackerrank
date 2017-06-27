@@ -3,10 +3,9 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
+    cin >> T;
+    for(int N, A, B, C, D; cin >> N >> A >> B >> C >> D; ) {
         auto result = 0ll;
-        int N, A, B, C, D;
-        cin >> N >> A >> B >> C >> D;
         for(auto b = 0; b <= min(B, N / 2); b++) {
             auto rb = N - 2 * b;
             for(auto c = 0; c <= C; c++) {
