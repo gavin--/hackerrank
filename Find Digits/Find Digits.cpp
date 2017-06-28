@@ -3,9 +3,9 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, result = 0;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; ) {
+        auto result = 0;
         for(auto n = N; n > 0; n /= 10) {
             auto d = n % 10;
             if(d != 0 && N % d == 0) {
