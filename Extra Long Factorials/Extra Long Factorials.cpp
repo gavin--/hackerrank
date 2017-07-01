@@ -13,7 +13,7 @@ string multiply(const string& a, const string& b) {
     auto size = 0;
     for(auto i = 0, j = 0; i < a.size() + b.size(); i++) {
         auto t = product[i] + j;
-        product[i] = (product[i] + j) % 10;
+        product[i] = t % 10;
         j = t / 10;
         if(product[i] != 0) {
             size = i + 1;
@@ -22,9 +22,10 @@ string multiply(const string& a, const string& b) {
     if(size == 0) {
         return "0";
     }
-    string result(size, '0');
-    for(auto i = 0; i < size; i++) {
-        result.rbegin()[i] = product[i] + '0';
+    string result;
+    result.reserve(size);
+    for(auto i = size - 1; i >= 0; i--) {
+        result.push_back(product[i] + '0');
     }
     return result;
 }
