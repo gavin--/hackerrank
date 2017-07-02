@@ -1,4 +1,5 @@
 #include <vector>
+#include <bitset>
 #include <iostream>
 using namespace std;
 
@@ -30,11 +31,7 @@ int main() {
                 result++;
             }
         }
-        for(auto i = 0; i < 64; i++) {
-            if((mask & (1ull << i)) == 0) {
-                result++;
-            }
-        }
+        result += 64 - bitset<64>(mask).count();
     }
     cout << result;
     return 0;
