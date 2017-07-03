@@ -1,4 +1,5 @@
 #include <stack>
+#include <vector>
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -12,27 +13,30 @@ int main() {
         cin >> a[i];
     }
     stack<int> stack;
-    for(auto i = 0; i != n; i++) {
-        while(!stack.empty() && a[stack.top()] < a[i]) {
-            right[stack.top()] = i;
-            stack.pop();
-        }
-        stack.emplace(i);
-    }
-    while(!stack.empty()) {
-        right[stack.top()] = n;
-        stack.pop();
-    }
     for(auto i = n - 1; i >= 0; i--) {
-        while(!stack.empty() && a[stack.top()] < a[i]) {
-            left[stack.top()] = i;
+        while(!stack.empty() && a[stack.top()] <= a[i]) {
             stack.pop();
+        }
+        if(stack.empty()) {
+            right[i] = n;
+        } else {
+            right[i] = stack.top();
         }
         stack.emplace(i);
     }
     while(!stack.empty()) {
-        left[stack.top()] = -1;
         stack.pop();
+    }
+    for(auto i = 0; i < n; i++) {
+        while(!stack.empty() && a[stack.top()] <= a[i]) {
+            stack.pop();
+        }
+        if(stack.empty()) {
+            left[i] = -1;
+        } else {
+            left[i] = stack.top();
+        }
+        stack.emplace(i);
     }
     fill(result, result + n + 1, INT_MAX);
     for(auto i = 0; i != n; i++) {
