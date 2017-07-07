@@ -16,15 +16,15 @@ int main() {
         }
     }
     for(int n; cin >> n; ) {
-        int map[1001] = {};
+        int map[4501] = {};
         for(int a; n > 0; n--) {
             cin >> a;
-            map[a - 3500]++;
+            map[a]++;
         }
         vector<int> a;
-        for(auto i = 0; i < 1001; i++) {
+        for(auto i = 3500; i < 4501; i++) {
             if(map[i] > 0) {
-                a.emplace_back(i + 3500);
+                a.emplace_back(i);
             }
         }
         int dp[a.size() + 1][8192], result = 0;
@@ -32,7 +32,7 @@ int main() {
         fill(dp[0] + 1, dp[0] + 8192, 0);
         for(auto i = 1; i <= a.size(); i++) {
             for(auto j = 0; j < 8192; j++) {
-                dp[i][j] = ((long long)dp[i - 1][j] * ((map[a[i - 1] - 3500] + 2) / 2) + (long long)dp[i - 1][a[i - 1] ^ j] * ((map[a[i - 1] - 3500] + 1) / 2)) % MOD;
+                dp[i][j] = ((long long)dp[i - 1][j] * ((map[a[i - 1]] + 2) / 2) + (long long)dp[i - 1][a[i - 1] ^ j] * ((map[a[i - 1]] + 1) / 2)) % MOD;
             }
         }
         for(auto i = 2; i < 8192; i++) {
