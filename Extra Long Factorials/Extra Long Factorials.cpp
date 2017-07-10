@@ -5,29 +5,24 @@ using namespace std;
 string multiply(const string& a, const string& b) {
     int product[a.size() + b.size()];
     fill(product, product + a.size() + b.size(), 0);
-    for(auto i = 0; i < a.size(); i++) {
-        for(auto j = 0; j < b.size(); j++) {
-            product[i + j] += (a.rbegin()[i] - '0') * (b.rbegin()[j] - '0');
+    for(int i = a.size() - 1; i >= 0; i--) {
+        for(int j = b.size() - 1; j >= 0; j--) {
+            auto sum = (a[i] - '0') * (b[j] - '0') + product[i + j + 1];
+            product[i + j] += sum / 10;
+            product[i + j + 1] = sum % 10;
         }
     }
-    auto size = 0;
-    for(auto i = 0, j = 0; i < a.size() + b.size(); i++) {
-        auto t = product[i] + j;
-        product[i] = t % 10;
-        j = t / 10;
+    for(auto i = 0; i < a.size() + b.size(); i++) {
         if(product[i] != 0) {
-            size = i + 1;
+            string result;
+            while(i < a.size() + b.size()) {
+                result.push_back(product[i] + '0');
+                i++;
+            }
+            return result;
         }
     }
-    if(size == 0) {
-        return "0";
-    }
-    string result;
-    result.reserve(size);
-    for(auto i = size - 1; i >= 0; i--) {
-        result.push_back(product[i] + '0');
-    }
-    return result;
+    return "0";
 }
 
 int main() {
