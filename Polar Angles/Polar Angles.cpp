@@ -35,16 +35,8 @@ int main() {
         }
         return left < right;
     };
-    auto mid = [] (pair<int, int> p1, pair<int, int> p2) {
-        return p1.second * p1.second < p2.second * p2.second;
-    };
-    sort(points[0].begin(), points[0].end(), polar);
-    sort(points[1].begin(), points[1].end(), mid);
-    sort(points[2].begin(), points[2].end(), polar);
-    sort(points[3].begin(), points[3].end(), polar);
-    sort(points[4].begin(), points[4].end(), mid);
-    sort(points[5].begin(), points[5].end(), polar);
     for(auto& i : points) {
+        sort(begin(i), end(i), polar);
         for(auto& j : i) {
             cout << j.first << ' ' << j.second << endl;
         }
