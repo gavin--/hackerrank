@@ -1,56 +1,49 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <queue>
 using namespace std;
 
 int main() {
     int n;
     cin >> n;
-    vector<int> min, max;
+    priority_queue<int, vector<int>, greater<int>> back;
+    priority_queue<int> front;
     for(int a; cin >> a; ) {
-        if(min.size() == max.size()) {
-            if(max.empty() || max[0] < a) {
-                min.emplace_back(a);
-                push_heap(begin(min), end(min), greater<int>());
+        if(back.size() == front.size()) {
+            if(front.empty() || front.top() < a) {
+                back.emplace(a);
             } else {
-                max.emplace_back(a);
-                push_heap(begin(max), end(max));
+                front.emplace(a);
             }
-        } else if(min.size() < max.size()) {
-            if(max[0] < a) {
-                min.emplace_back(a);
-                push_heap(begin(min), end(min), greater<int>());
+        } else if(back.size() < front.size()) {
+            if(front.top() < a) {
+                back.emplace(a);
             } else {
-                min.emplace_back(max[0]);
-                push_heap(begin(min), end(min), greater<int>());
-                pop_heap(begin(max), end(max));
-                max[max.size() - 1] = a;
-                push_heap(begin(max), end(max));
+                back.emplace(front.top());
+                front.pop();
+                front.emplace(a);
             }
         } else {
-            if(min[0] > a) {
-                max.emplace_back(a);
-                push_heap(begin(max), end(max));
+            if(back.top() > a) {
+                front.emplace(a);
             } else {
-                max.emplace_back(min[0]);
-                push_heap(begin(max), end(max));
-                pop_heap(begin(min), end(min), greater<int>());
-                min[min.size() - 1] = a;
-                push_heap(begin(min), end(min), greater<int>());
+                front.emplace(back.top());
+                back.pop();
+                back.emplace(a);
             }
         }
-        if(min.size() == max.size()) {
-            cout << (max[0] + min[0]) / 2;
-            if((max[0] + min[0]) % 2 == 1) {
+        if(back.size() == front.size()) {
+            cout << (front.top() + back.top()) / 2;
+            if((front.top() + back.top()) % 2 == 1) {
                 cout << ".5\n";
             } else {
                 cout << ".0\n";
             }
         } else {
-            if(min.size() < max.size()) {
-                cout << max[0] << ".0\n";
+            if(back.size() < front.size()) {
+                cout << front.top() << ".0\n";
             } else {
-                cout << min[0] << ".0\n";
+                cout << back.top() << ".0\n";
             }
         }
     }
