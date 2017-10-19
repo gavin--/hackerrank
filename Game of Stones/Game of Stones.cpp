@@ -4,9 +4,8 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int n;
-        cin >> n;
+    cin >> T;
+    for(int n; cin >> n; ) {
         vector<bool> dp(max(n, 5));
         dp[0] = 0;
         dp[1] = 1;
