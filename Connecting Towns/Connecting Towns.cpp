@@ -5,9 +5,9 @@ const int MOD = 1234567;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        int N, result = 1;
-        cin >> N;
+    cin >> T;
+    for(int N; cin >> N; ) {
+        int result = 1;
         for(auto i = 0; i != N - 1; i++) {
             int d;
             cin >> d;
