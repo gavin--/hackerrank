@@ -30,30 +30,30 @@ long long sq(long long n) {
 }
 
 int main() {
-	int q;
-	cin >> q;
-	vector<bool> prime(SIZE, true);
-	for(int i = 2; i * i < SIZE; i++) {
-	    if(prime[i]) {
-	        for(int j = i * i; j < SIZE; j += i) {
-	            prime[j] = false;
-	        }
-	    }
-	}
-	vector<int> primes;
-	for(int i = 2; i < SIZE; i++) {
-	    if(prime[i]) {
-	        primes.emplace_back(i);
-	    }
-	}
-	for(long long m, a; cin >> m >> a; ) {
-	    long long result = 1;
-	    for(long long i = 1; i <= m; i++) {
-	        long long p = primes[i - 1], inv = inverse(p + negative(1));
+    int q;
+    cin >> q;
+    vector<bool> prime(SIZE, true);
+    for(int i = 2; i * i < SIZE; i++) {
+        if(prime[i]) {
+            for(int j = i * i; j < SIZE; j += i) {
+                prime[j] = false;
+            }
+        }
+    }
+    vector<int> primes;
+    for(int i = 2; i < SIZE; i++) {
+        if(prime[i]) {
+            primes.emplace_back(i);
+        }
+    }
+    for(long long m, a; cin >> m >> a; ) {
+        long long result = 1;
+        for(long long i = 1; i <= m; i++) {
+            long long p = primes[i - 1], inv = inverse(p + negative(1));
             result = result * ((pow(p, a + 1 + i) + negative(1)) % MOD * inv % MOD * p % MOD + negative(a + 1 + i)) % MOD;
             result = result * inv % MOD;
-	    }
-	    cout << result << endl;
-	}
-	return 0;
+        }
+        cout << result << endl;
+    }
+    return 0;
 }
