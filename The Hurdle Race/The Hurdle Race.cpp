@@ -1,11 +1,11 @@
 #include <iostream>
+#include <iterator>
+#include <algorithm>
 using namespace std;
 
 int main() {
-    int n, k, result = 0;
+    int n, k;
     cin >> n >> k;
-    for(int i; cin >> i; result = max(result, i)) {
-    }
-    cout << max(0, result - k);
+    cout << max(0, *max_element(istream_iterator<int>(cin), istream_iterator<int>()) - k);
     return 0;
 }
