@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
 
-long long solve(string n) {
-    if(n.size() == 1) {
-        return n[0] - '0';
+long long solve(long long n) {
+    if(n <= 9) {
+        return n;
     }
-    int sum = 0;
-    for(auto i : n) {
-        sum += i - '0';
+    long long sum = 0;
+    while(n > 0) {
+        sum += n % 10;
+        n /= 10;
     }
-    return solve(to_string(sum));
+    return solve(sum);
 }
 
 int main() {
@@ -20,6 +21,6 @@ int main() {
         sum += i - '0';
     }
     sum *= k;
-    cout << solve(to_string(sum));
+    cout << solve(sum);
     return 0;
 }
