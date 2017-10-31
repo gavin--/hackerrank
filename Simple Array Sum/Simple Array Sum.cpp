@@ -1,12 +1,11 @@
 #include <iostream>
+#include <numeric>
+#include <iterator>
 using namespace std;
 
 int main(){
-    int n, sum = 0;
+    int n;
     cin >> n;
-    for(int i; cin >> i;){
-       sum += i;
-    }
-    cout << sum;
+    cout << accumulate(istream_iterator<int>(cin), istream_iterator<int>(), 0);
     return 0;
 }
