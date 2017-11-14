@@ -3,23 +3,20 @@
 using namespace std;
 
 string multiply(const string& a, const string& b) {
-    int product[a.size() + b.size()];
-    fill(product, product + a.size() + b.size(), 0);
+    string product(a.size() + b.size(), '0');
     for(int i = a.size() - 1; i >= 0; i--) {
         for(int j = b.size() - 1; j >= 0; j--) {
-            auto sum = (a[i] - '0') * (b[j] - '0') + product[i + j + 1];
+            auto sum = (a[i] - '0') * (b[j] - '0') + product[i + j + 1] - '0';
             product[i + j] += sum / 10;
-            product[i + j + 1] = sum % 10;
+            product[i + j + 1] = sum % 10 + '0';
         }
     }
-    for(auto i = 0; i < a.size() + b.size(); i++) {
-        if(product[i] != 0) {
-            string result;
-            while(i < a.size() + b.size()) {
-                result.push_back(product[i] + '0');
-                i++;
-            }
-            return result;
+    if(product[0] == '0') {
+        product.erase(0, 1);
+    }
+    for(auto c : product) {
+        if(c != '0') {
+            return product;
         }
     }
     return "0";
