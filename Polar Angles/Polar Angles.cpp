@@ -6,29 +6,19 @@ using namespace std;
 int main() {
     int N;
     cin >> N;
-    vector<pair<int, int>> points[6];
+    vector<pair<int, int>> points[4];
     for(int x, y; cin >> x >> y; ) {
-        if(x > 0) {
-            if(y >= 0) {
-                points[0].emplace_back(x, y);
-            } else {
-                points[5].emplace_back(x, y);
-            }
-        } else if(x == 0) {
-            if(y > 0) {
-                points[1].emplace_back(x, y);
-            } else {
-                points[4].emplace_back(x, y);
-            }
+        if(x > 0 && y >= 0) {
+            points[0].emplace_back(x, y);
+        } else if(x <= 0 && y > 0) {
+            points[1].emplace_back(x, y);
+        } else if(x < 0 && y <= 0) {
+            points[2].emplace_back(x, y);
         } else {
-            if(y >= 0) {
-                points[2].emplace_back(x, y);
-            } else {
-                points[3].emplace_back(x, y);
-            }
+            points[3].emplace_back(x, y);
         }
     }
-    auto polar = [] (pair<int, int> p1, pair<int, int> p2) {
+    auto polar = [] (pair<int, int>& p1, pair<int, int>& p2) {
         auto left = p1.second * p2.first, right = p2.second * p1.first;
         if(left == right) {
             return p1.first * p1.first + p1.second * p1.second < p2.first * p2.first + p2.second * p2.second;
