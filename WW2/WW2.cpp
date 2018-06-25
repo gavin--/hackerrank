@@ -32,13 +32,6 @@ vector<vector<long long>> pow(vector<vector<long long>> x, int n) {
     return result;
 }
 
-int ceiling(int a, int b) {
-    if(a == 0) {
-        return 0;
-    }
-    return (a - 1) / b + 1;
-}
-
 int main() {
     int T;
     cin >> T;
@@ -52,7 +45,7 @@ int main() {
             even[i][i] = 1;
         }
         even[0][0] = 1;
-        auto matrix = mul(pow(odd, ceiling(n - 1, 2)), pow(even, (n - 1) / 2));
+        auto matrix = mul(pow(odd, (n - 1) / 2 + (n - 1) % 2), pow(even, (n - 1) / 2));
         long long result = 0;
         for(int i = 0; i < m; i++) {
             for(int j = 0; j < m; j++) {
