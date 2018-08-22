@@ -1,8 +1,7 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 using namespace std;
-
-const int SIZE = 10000001;
 
 long long lowbit(long long i) {
     return i & -i;
@@ -27,15 +26,17 @@ void add(vector<long long>& bit, long long index, long long val) {
 int main() {
     int t;
     scanf("%d", &t);
-    for(int n; scanf("%d", &n) > 0; ) {
-        long long a[n], result = 0;
+    for(long long n; scanf("%lld", &n) > 0; ) {
+        long long a[n], b[n], result = 0;
         for(int i = 0; i < n; i++) {
             scanf("%lld", &a[i]);
+            b[i] = a[i];
         }
-        vector<long long> bit(SIZE, 0);
+        sort(b, b + n);
+        vector<long long> bit(n + 1);
         for(int i = n - 1; i >= 0; i--) {
-            result += get(bit, a[i] - 1);
-            add(bit, a[i], 1);
+            result += get(bit, distance(b, upper_bound(b, b + n, a[i] - 1)));
+            add(bit, distance(b, upper_bound(b, b + n, a[i])), 1);
         }
         printf("%lld\n", result);
     }
