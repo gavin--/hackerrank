@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-char grundy[15][15];
+int grundy[15][15];
 
 int mex(int x, int y) {
     vector<int> set;
@@ -39,39 +39,35 @@ int mex(int x, int y) {
             }
         }
     }
-    auto result = 0;
-    sort(begin(set), end(set));
-    if(set.empty() || set[0] != 0) {
-        return 0;
-    }
-    for(auto i = 1; i < set.size(); i++) {
-        if(set[i] != set[i - 1] + 1 && set[i] != set[i - 1]) {
-            return set[i - 1] + 1;
+    for(int i = 0; i < set.size(); i++) {
+        while(set[i] < set.size() && set[set[i]] != set[i]) {
+            swap(set[set[i]], set[i]);
         }
     }
-    return set[set.size() - 1] + 1;
+    for(int i = 0; i < set.size(); i++) {
+        if(set[i] != i) {
+            return i;
+        }
+    }
+    return set.size();
 }
 
 int main() {
     int T;
     cin >> T;
-    for(auto i = 0; i < 15; i++) {
+    for(int i = 0; i < 15; i++) {
         fill(begin(grundy[i]), end(grundy[i]), -1);
     }
-    for(auto i = 0; i < 15; i++) {
-        for(auto j = 0; j < 15; j++) {
+    for(int i = 0; i < 15; i++) {
+        for(int j = 0; j < 15; j++) {
             grundy[i][j] = mex(i, j);
         }
     }
     for(int k; cin >> k; ) {
-        auto result = 0;
-        while(k > 0) {
-            int x, y;
+        int result = 0;
+        for(int x, y; k > 0; k--) {
             cin >> x >> y;
-            x--;
-            y--;
-            result = result ^ grundy[x][y];
-            k--;
+            result = result ^ grundy[x - 1][y - 1];
         }
         if(result != 0) {
             cout << "First\n";
