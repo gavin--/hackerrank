@@ -4,25 +4,24 @@ using namespace std;
 
 int main() {
     int T;
-    for(cin >> T; T > 0; T--) {
-        string S;
-        cin >> S;
-        auto result = 0;
-        for(auto i = 0; i != S.size(); i++) {
-            for(auto j = 1; i + j <= S.size(); j++) {
-                map<char, short> count1;
-                for(auto k = i; k < i + j; k++) {
-                    count1[S[k]]++;
+    cin >> T;
+    for(string s; cin >> s; ) {
+        int result = 0;
+        for(int i = 0; i != s.size(); i++) {
+            for(int j = 1; i + j <= s.size(); j++) {
+                map<char, int> count1;
+                for(int k = i; k < i + j; k++) {
+                    count1[s[k]]++;
                 }
                 auto count2 = count1;
-                for(auto k = i + 1; k + j <= S.size(); k++) {
-                    auto find = count2.find(S[k - 1]);
+                for(int k = i + 1; k + j <= s.size(); k++) {
+                    auto find = count2.find(s[k - 1]);
                     if(find->second == 1) {
                         count2.erase(find);
                     } else {
                         find->second--;
                     }
-                    count2[S[k + j - 1]]++;
+                    count2[s[k + j - 1]]++;
                     if(count1 == count2) {
                         result++;
                     }
