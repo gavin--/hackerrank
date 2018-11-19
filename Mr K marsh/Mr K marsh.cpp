@@ -6,26 +6,24 @@ int main() {
     int m, n, result = 0;
     cin >> m >> n;
     vector<bool> graph[m];
-    fill(graph, graph + m, vector<bool>(n));
     for(auto i = 0; i != m; i++) {
         string s;
         cin >> s;
+        graph[i].resize(n);
         for(auto j = 0; j != n; j++) {
-            if(s[j] == 'x') {
-                graph[i][j] = true;
-            }
+            graph[i][j] = s[j] == 'x';
         }
     }
-    short dp[m][m];
-    for(auto i = 0; i != m; i++) {
-        for(auto j = i + 1; j != m; j++) {
+    int dp[m][m];
+    for(int i = 0; i != m; i++) {
+        for(int j = i + 1; j != m; j++) {
             dp[i][j] = -1;
         }
     }
-    for(auto i = 0; i != n; i++) {
-        for(auto j = 0; j != m; j++) {
-            auto marsh = false;
-            for(auto k = j + 1; k < m; k++) {
+    for(int i = 0; i != n; i++) {
+        for(int j = 0; j != m; j++) {
+            bool marsh = false;
+            for(int k = j + 1; k < m; k++) {
                 if(graph[k][i] == 1) {
                     marsh = true;
                 }
