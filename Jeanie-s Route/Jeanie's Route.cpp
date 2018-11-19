@@ -20,17 +20,15 @@ pair<int, int> longest(int start, int parent, set<pair<int, int>>* graph) {
 }
 
 int main() {
-    int N, K, result = 0, start;
-    cin >> N >> K;
-    vector<bool> letters(N, 0);
-    for(int j; K > 0; K--) {
+    int n, k, result = 0, start;
+    cin >> n >> k;
+    vector<bool> letters(n, 0);
+    for(int j; k > 0; k--) {
         cin >> j;
-        j--;
-        letters[j] = true;
-        start = j;
+        letters[j - 1] = true;
+        start = j - 1;
     }
-    set<pair<int, int>> graph[N];
-    fill(graph, graph + N, set<pair<int, int>>());
+    set<pair<int, int>> graph[n];
     for(int u, v, d; cin >> u >> v >> d; result += d) {
         u--;
         v--;
@@ -38,21 +36,20 @@ int main() {
         graph[v].emplace(u, d);
     }
     queue<int> queue;
-    for(auto i = 0; i < N; i++) {
+    for(auto i = 0; i < n; i++) {
         if(graph[i].size() == 1 && letters[i] == false) {
             queue.emplace(i);
         }
     }
     while(!queue.empty()) {
-        auto front = queue.front();
-        queue.pop();
-        for(auto& j : graph[front]) {
+        for(auto& j : graph[queue.front()]) {
             result -= j.second;
-            graph[j.first].erase({front, j.second});
+            graph[j.first].erase({queue.front(), j.second});
             if(graph[j.first].size() == 1 && letters[j.first] == false) {
                 queue.emplace(j.first);
             }
         }
+        queue.pop();
     }
     cout << 2 * result - longest(start, -1, graph).second;
     return 0;
