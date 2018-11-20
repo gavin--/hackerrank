@@ -43,6 +43,7 @@ int main() {
     queue1.emplace(a, b);
     queue2.emplace(c, d);
     visited1[a][b] = true;
+    visited2[c][d] = true;
     for(int result = 0; !queue1.empty() && !queue2.empty(); result++) {
         for(auto size = queue1.size(); size > 0; size--) {
             if(visited2[queue1.front().first][queue1.front().second]) {
