@@ -7,25 +7,26 @@ int main() {
     long long result = 0;
     cin >> n;
     stack<int> stack;
-    for(int h; cin >> h; ) {
+    for(int h; cin >> h; stack.emplace(h)) {
         while(!stack.empty() && h > stack.top()) {
-            long long same = 0;
+            long long same = 1;
             int last = stack.top();
+            stack.pop();
             while(!stack.empty() && last == stack.top()) {
                 same++;
                 stack.pop();
-            }
+            };
             result += same * (same - 1);
         }
-        stack.emplace(h);
     }
     while(!stack.empty()) {
-        long long same = 0;
+        long long same = 1;
         int last = stack.top();
+        stack.pop();
         while(!stack.empty() && last == stack.top()) {
             same++;
             stack.pop();
-        }
+        };
         result += same * (same - 1);
     }
     cout << result;
