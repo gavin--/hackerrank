@@ -1,5 +1,4 @@
 #include <stack>
-#include <vector>
 #include <iostream>
 #include <algorithm>
 #include <climits>
@@ -9,41 +8,34 @@ int main() {
     int n, q;
     cin >> n >> q;
     int a[n], left[n], right[n], result[n + 1];
+    fill(result, result + n + 1, INT_MAX);
+    stack<int> s1, s2;
     for(auto i = 0; i != n; i++) {
         cin >> a[i];
-    }
-    stack<int> stack;
-    for(auto i = n - 1; i >= 0; i--) {
-        while(!stack.empty() && a[stack.top()] <= a[i]) {
-            stack.pop();
+        while(!s1.empty() && a[s1.top()] <= a[i]) {
+            s1.pop();
         }
-        if(stack.empty()) {
-            right[i] = n;
-        } else {
-            right[i] = stack.top();
-        }
-        stack.emplace(i);
-    }
-    while(!stack.empty()) {
-        stack.pop();
-    }
-    for(auto i = 0; i < n; i++) {
-        while(!stack.empty() && a[stack.top()] <= a[i]) {
-            stack.pop();
-        }
-        if(stack.empty()) {
+        if(s1.empty()) {
             left[i] = -1;
         } else {
-            left[i] = stack.top();
+            left[i] = s1.top();
         }
-        stack.emplace(i);
+        s1.emplace(i);
+        while(!s2.empty() && a[s2.top()] <= a[i]) {
+            right[s2.top()] = i;
+            s2.pop();
+        }
+        s2.emplace(i);
     }
-    fill(result, result + n + 1, INT_MAX);
-    for(auto i = 0; i != n; i++) {
-        auto size = right[i] - left[i]  - 1;
+    while(!s2.empty()) {
+        right[s2.top()] = n;
+        s2.pop();
+    }
+    for(int i = 0; i != n; i++) {
+        int size = right[i] - left[i]  - 1;
         result[size] = min(result[size], a[i]);
     }
-    for(auto i = n - 1; i > 0; i--) {
+    for(int i = n - 1; i > 0; i--) {
         result[i] = min(result[i], result[i + 1]);
     }
     for(int d; cin >> d; cout << result[d] << endl) {
