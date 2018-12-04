@@ -5,25 +5,21 @@ using namespace std;
 int main() {
     int T;
     cin >> T;
-    for(string S; cin >> S; ) {
-        auto result = 0;
-        if(S.size() % 2 == 1) {
+    for(string s; cin >> s; ) {
+        int result = 0;
+        if(s.size() % 2 == 1) {
             result = -1;
         } else {
             map<char, int> count;
-            for(auto i = 0; i != S.size() / 2; i++) {
-                count[S[i]]++;
+            for(int i = 0; i != s.size() / 2; i++) {
+                count[s[i]]++;
             }
-            for(auto i = S.size() / 2; i != S.size(); i++) {
-                auto find = count.find(S[i]);
-                if(find == count.end()) {
+            for(int i = s.size() / 2; i != s.size(); i++) {
+                auto find = count.find(s[i]);
+                if(find == count.end() || find->second <= 0) {
                     result++;
                 } else {
-                    if(find->second == 1) {
-                        count.erase(find);
-                    } else {
-                        find->second--;
-                    }
+                    find->second--;
                 }
             }
         }
