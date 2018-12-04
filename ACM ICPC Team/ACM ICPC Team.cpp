@@ -2,8 +2,8 @@
 using namespace std;
 
 int count(string& a, string& b) {
-    auto result = 0;
-    for(auto i = 0; i != a.size(); i++) {
+    int result = 0;
+    for(int i = 0; i != a.size(); i++) {
         if(a[i] == '1' || b[i] == '1') {
             result++;
         }
@@ -15,11 +15,9 @@ int main() {
     int n, m, topic = 0, team;
     cin >> n >> m;
     string a[n];
-    for(auto i = 0; cin >> a[i]; i++) {
-    }
-    for(auto i = 0; i != n; i++) {
-        for(auto j = 0; j != i; j++) {
-            auto current = count(a[i], a[j]);
+    for(int i = 0; cin >> a[i]; i++) {
+        for(int j = 0; j != i; j++) {
+            int current = count(a[i], a[j]);
             if(current > topic) {
                 topic = current;
                 team = 1;
@@ -28,6 +26,6 @@ int main() {
             }
         }
     }
-    cout << topic << endl << team;
+    cout << topic << '\n' << team;
     return 0;
 }
