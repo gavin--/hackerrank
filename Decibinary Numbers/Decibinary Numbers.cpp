@@ -38,9 +38,7 @@ int main() {
         while(length >= 0) {
             long long current = 0;
             for(int i = 0; ; i++) {
-                if(target - (1 << length) * i >= 0) {
-                    current += dp[length][target - (1 << length) * i];
-                }
+                current += dp[length][target - (1 << length) * i];
                 if(current >= x) {
                     cout << i;
                     x -= current - dp[length][target - (1 << length) * i];
