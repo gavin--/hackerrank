@@ -6,7 +6,9 @@ using namespace std;
 
 const int MOD = 1000000000;
 
-bool cycle(int n, vector<int>* graph, int* dp) {
+int solve(int n, vector<int>* graph) {
+    int dp[n];
+    fill(dp, dp + n, 0);
     vector<int> current;
     set<int> path;
     vector<bool> visited(n), cycle(n);
@@ -42,10 +44,10 @@ bool cycle(int n, vector<int>* graph, int* dp) {
     dfs(0);
     for(int i = 0; i < n; i++) {
         if(cycle[i] && path.find(i) != path.end()) {
-            return true;
+            return -1;
         }
     }
-    return false;
+    return dp[0];
 }
 
 int main() {
@@ -56,10 +58,11 @@ int main() {
     fill(dp, dp + n, 0);
     for(int x, y; cin >> x >> y; graph[x - 1].emplace_back(y - 1)) {
     }
-    if(cycle(n, graph, dp)) {
+    auto result = solve(n, graph);
+    if(result == -1) {
         cout << "INFINITE PATHS";
     } else {
-        cout << dp[0];
+        cout << result;
     }
     return 0;
 }
