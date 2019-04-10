@@ -56,7 +56,6 @@ int main() {
     fill(dp, dp + n, 0);
     for(int x, y; cin >> x >> y; graph[x - 1].emplace_back(y - 1)) {
     }
-
     if(cycle(n, graph, dp)) {
         cout << "INFINITE PATHS";
     } else {
