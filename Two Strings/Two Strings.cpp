@@ -1,15 +1,20 @@
 #include <iostream>
-#include <set>
+#include <algorithm>
 using namespace std;
 
 int main() {
     int p;
     cin >> p;
     for(string a, b; cin >> a >> b; ) {
-        set<char> set(a.begin(), a.end());
-        auto result = "NO\n";
-        for(auto& i : b) {
-            if(set.find(i) != end(set)) {
+        char chars[a.size()];
+        for(int i = 0; i < a.size(); i++) {
+            chars[i] = a[i];
+        }
+        sort(chars, chars + a.size());
+        string result = "NO\n";
+        for(char i : b) {
+            auto it = lower_bound(chars, chars + a.size(), i);
+            if(it != chars + a.size() && *it == i) {
                 result = "YES\n";
                 break;
             }
