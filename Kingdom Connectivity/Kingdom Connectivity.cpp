@@ -12,7 +12,7 @@ int solve(int n, vector<int>* graph) {
     vector<int> current;
     set<int> path;
     vector<bool> visited(n), cycle(n);
-    function<void(int)> dfs = [&n, &dfs, &graph, &visited, &cycle, &path, &dp, &current](int node) {
+    function<void(int)> dfs = [&](int node) {
         visited[node] = true;
         current.emplace_back(node);
         if(node == n - 1) {
