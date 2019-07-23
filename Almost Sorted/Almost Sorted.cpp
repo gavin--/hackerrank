@@ -10,7 +10,16 @@ int main() {
         cin >> arr[i];
         sorted[i] = arr[i];
     }
-    sort(sorted, sorted + n);
+    for (int i = 1; i < n; i++) {
+        if (sorted[i - 1] > sorted[i]) {
+            swap(sorted[i - 1], sorted[i]);
+        }
+    }
+    for (int i = n - 2; i >= 0; i--) {
+        if (sorted[i] > sorted[i + 1]) {
+            swap(sorted[i], sorted[i + 1]);
+        }
+    }
     for (int i = 0; i < n; i++) {
         if (arr[i] != sorted[i]) {
             left = i;
