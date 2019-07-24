@@ -1,23 +1,20 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 int main() {
     int n, result = 0;
     cin >> n;
-    pair<int, int> arr[n];
+    int arr[n];
     for (int i = 0; i < n; i++) {
-        cin >> arr[i].first;
-        arr[i].second = i;
+        cin >> arr[i];
     }
-    sort(arr, arr + n);
     for (int i = 0; i < n; i++) {
         int current = 0;
-        while (arr[i].second != i) {
-            swap(arr[i], arr[arr[i].second]);
+        while (arr[i] != i + 1) {
+            swap(arr[i], arr[arr[i] - 1]);
             current++;
         }
-        result += current - 1;
+        result += current;
     }
     cout << result;
     return 0;
