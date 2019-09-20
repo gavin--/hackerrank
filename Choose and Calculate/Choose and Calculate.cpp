@@ -13,14 +13,14 @@ void precompute(long long n, long long k) {
     inv[1] = 1;
     factorial[1] = 1;
     ifactorial[1] = 1;
-    for(auto i = 2; i < n; i++) {
+    for (long long i = 2; i < n; i++) {
         factorial[i] = factorial[i - 1] * i % MOD;
         inv[i] = (-MOD / i + MOD) * inv[MOD % i] % MOD;
         ifactorial[i] = ifactorial[i - 1] * inv[i] % MOD;
     }
 }
 
-long long C(long long n, long long k) {
+long long binomial(long long n, long long k) {
     return factorial[n] * ifactorial[k] % MOD * ifactorial[n - k] % MOD;
 }
 
@@ -29,15 +29,15 @@ int main() {
     cin >> N >> K;
     precompute(N, K);
     int a[N];
-    for(auto i = 0; cin >> a[i]; i++) {
+    for (int i = 0; cin >> a[i]; i++) {
     }
     sort(a, a + N);
-    auto result = 0ll;
-    for(auto i = K - 1; i < N; i++) {
-        result = (result + a[i] * C(i, K - 1)) % MOD;
+    long long result = 0;
+    for (long long i = K - 1; i < N; i++) {
+        result = (result + a[i] * binomial(i, K - 1)) % MOD;
     }
-    for(auto i = 0; i <= N - K; i++) {
-        result = (result - a[i] * C(N - i - 1, K - 1)) % MOD;
+    for (long long i = 0; i <= N - K; i++) {
+        result = (result - a[i] * binomial(N - i - 1, K - 1)) % MOD;
     }
     cout << (result + MOD) % MOD;
     return 0;
