@@ -5,43 +5,40 @@
 #include <algorithm>
 using namespace std;
 
-void update(int* weight, set<int>& mst, forward_list<pair<int, int>>& adj, set<pair<int, int>>& set) {
-    for(auto& d : adj) {
-        if(mst.find(d.first) != mst.end()) {
-            continue;
-        }
-        if(weight[d.first] > d.second) {
-            set.erase({weight[d.first], d.first});
-            weight[d.first] = d.second;
-            set.emplace(d.second, d.first);
-        }
-    }
-}
-
 int main() {
-    int N, M;
-    cin >> N >> M;
-    int weight[N];
-    fill(weight, weight + N, INT_MAX);
-    set<int> mst = {0};
+    int n, m;
+    cin >> n >> m;
+    int weight[n + 1];
+    fill(weight, weight + n + 1, INT_MAX);
+    set<int> mst = {1};
     set<pair<int, int>> set;
-    forward_list<pair<int, int>> graph[N];
-    for(int x, y, r; cin >> x >> y >> r; ) {
-        x--;
-        y--;
+    forward_list<pair<int, int>> graph[n + 1];
+    for (int x, y, r; cin >> x >> y >> r; ) {
         graph[x].emplace_front(y, r);
         graph[y].emplace_front(x, r);
     }
-    auto result = 0;
-    update(weight, mst, graph[0], set);
+    int result = 0;
+    auto update = [&](forward_list<pair<int, int>>& nodes) {
+        for (auto& d : nodes) {
+            if (mst.find(d.first) != mst.end()) {
+                continue;
+            }
+            if (weight[d.first] > d.second) {
+                set.erase({weight[d.first], d.first});
+                weight[d.first] = d.second;
+                set.emplace(d.second, d.first);
+            }
+        }
+    };
+    update(graph[1]);
     do {
         auto current = set.begin()->second;
         auto cost = set.begin()->first;
         set.erase(set.begin());
         mst.emplace(current);
         result += cost;
-        update(weight, mst, graph[current], set);
-    } while(!set.empty());
+        update(graph[current]);
+    } while (!set.empty());
     cout << result;
     return 0;
 }
